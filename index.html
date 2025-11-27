@@ -3,366 +3,410 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ابر‌سوشال پلاس - نسل بعدی شبکه‌های اجتماعی</title>
+    <title>پلتفرم پیشرفته - اکرام</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #FF2E63;
-            --secondary: #08D9D6;
-            --premium: #FFD700;
-            --dark: #0f0f23;
-            --light: #ffffff;
-            --neon: #00ff88;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
+        :root {
+            --primary: #8A2BE2;
+            --secondary: #FF6B6B;
+            --accent: #4ECDC4;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+        }
+
         body {
-            background: linear-gradient(135deg, #0f0f23, #1a1a2e);
+            background: linear-gradient(135deg, var(--dark) 0%, #16213E 100%);
             color: var(--light);
             min-height: 100vh;
             overflow-x: hidden;
         }
-        
-        /* افکت‌های پیشرفته */
-        .glow {
-            text-shadow: 0 0 10px var(--neon), 0 0 20px var(--neon), 0 0 30px var(--neon);
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
         }
-        
-        .neon-border {
-            border: 2px solid var(--neon);
-            box-shadow: 0 0 10px var(--neon), inset 0 0 10px var(--neon);
-        }
-        
-        /* صفحه لاگین پیشرفته */
-        .login-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f23 100%);
-            position: relative;
-        }
-        
-        .login-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 136, 0.1) 50%, transparent 70%);
-            animation: scan 3s linear infinite;
-        }
-        
-        @keyframes scan {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
-        
-        .login-box {
-            background: rgba(15, 15, 35, 0.9);
-            padding: 50px;
-            border-radius: 25px;
-            border: 1px solid rgba(0, 255, 136, 0.3);
-            box-shadow: 0 0 50px rgba(0, 255, 136, 0.2);
-            backdrop-filter: blur(20px);
+
+        /* نوار ناوبری */
+        .navbar {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: fixed;
             width: 100%;
-            max-width: 450px;
-            position: relative;
-            z-index: 1;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary);
         }
-        
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .logo {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 30px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--neon));
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: glow 2s ease-in-out infinite alternate;
         }
-        
-        @keyframes glow {
-            from { filter: hue-rotate(0deg); }
-            to { filter: hue-rotate(360deg); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
         }
-        
-        .input-group {
-            margin-bottom: 25px;
-            position: relative;
-        }
-        
-        .input-group label {
-            display: block;
-            margin-bottom: 10px;
-            color: var(--neon);
-            font-weight: bold;
-        }
-        
-        .input-group input {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid rgba(0, 255, 136, 0.3);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
+
+        .nav-links a {
             color: var(--light);
-            font-size: 16px;
-            transition: all 0.3s ease;
-            outline: none;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
         }
-        
-        .input-group input:focus {
-            border-color: var(--neon);
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
-            transform: scale(1.02);
+
+        .nav-links a:hover {
+            color: var(--accent);
         }
-        
-        .login-btn {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
+
+        /* هیرو سکشن */
+        .hero {
+            margin-top: 8rem;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px var(--primary); }
+            to { text-shadow: 0 0 30px var(--secondary), 0 0 40px var(--accent); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* بخش‌های مختلف */
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            margin: 3rem 0;
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        /* کارت‌ها */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
-        
-        .login-btn::before {
+
+        .card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: 0.5s;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
         }
-        
-        .login-btn:hover::before {
-            left: 100%;
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.12);
         }
-        
-        .login-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 46, 99, 0.4);
+
+        .card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
         }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 30px;
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
         }
-        
-        .feature {
-            background: rgba(0, 255, 136, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            border: 1px solid rgba(0, 255, 136, 0.2);
+
+        /* فرم‌ها */
+        .form-group {
+            margin-bottom: 1.5rem;
         }
-        
-        .premium-badge {
-            background: linear-gradient(45deg, var(--premium), #FFA500);
-            color: black;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
             display: inline-block;
-            margin-left: 10px;
         }
-        
-        /* صفحه اصلی */
-        .main-app {
-            display: none;
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
         }
-        
-        .dashboard {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+
+        /* انیمیشن‌ها */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
         }
-        
-        .stat-card {
-            background: rgba(15, 15, 35, 0.8);
-            padding: 25px;
-            border-radius: 15px;
-            border: 1px solid rgba(0, 255, 136, 0.3);
+
+        /* فوتور */
+        footer {
             text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 2.5rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, var(--neon), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 10px 0;
-        }
-        
-        /* رسپانسیو */
-        @media (max-width: 768px) {
-            .login-box {
-                padding: 30px 20px;
-                margin: 20px;
-            }
-            
-            .features {
-                grid-template-columns: 1fr;
-            }
-            
-            .logo {
-                font-size: 2.5rem;
-            }
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
 <body>
-    <!-- صفحه لاگین -->
-    <div class="login-container" id="loginPage">
-        <div class="login-box">
-            <div class="logo">ابر‌سوشال پلاس</div>
-            <p style="text-align: center; margin-bottom: 30px; color: #08D9D6;">
-                نسل بعدی شبکه‌های اجتماعی • هوش مصنوعی • متاورس
-            </p>
-            
-            <div class="input-group">
-                <label>📧 ایمیل پیشرفته</label>
-                <input type="email" id="email" placeholder="your.email@domain.com" required>
-            </div>
-            
-            <div class="input-group">
-                <label>🔐 پسورد امنیتی</label>
-                <input type="password" id="password" placeholder••••••••••" required>
-            </div>
-            
-            <button class="login-btn" onclick="advancedLogin()">
-                🚀 ورود به سیستم پیشرفته
-            </button>
-            
-            <div class="features">
-                <div class="feature">🤖 هوش مصنوعی</div>
-                <div class="feature">💰 درآمد روزانه</div>
-                <div class="feature">🎮 متاورس</div>
-                <div class="feature">🔒 امنیت فوق‌العاده</div>
-            </div>
-            
-            <div style="margin-top: 25px; padding: 20px; background: rgba(255, 46, 99, 0.1); border-radius: 10px; border: 1px solid rgba(255, 46, 99, 0.3);">
-                <p style="text-align: center; margin: 0;">
-                    <strong>ساخته شده توسط اکرم شجاع</strong><br>
-                    📞 ۰۰۹۳۷۰۰۶۱۶۳۶۲ • 📧 ekramshuja060@gmail.com
-                </p>
+    <!-- نوار ناوبری -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">ECODEV</div>
+            <div class="nav-links">
+                <a href="#instagram">انستاگرام</a>
+                <a href="#accounts">اکانت‌ها</a>
+                <a href="#games">بازی‌ها</a>
+                <a href="#education">آموزش</a>
+                <a href="#contact">تماس</a>
             </div>
         </div>
+    </nav>
+
+    <div class="container">
+        <!-- بخش اصلی -->
+        <section class="hero">
+            <h1 class="floating">پلتفرم جامع اکرام</h1>
+            <p>ارائه خدمات دیجیتال - از اکانت‌های premium تا آموزش‌های تخصصی</p>
+            <button class="btn" onclick="scrollToSection('services')">شروع کنید</button>
+        </section>
+
+        <!-- خدمات انستاگرام -->
+        <section id="instagram" class="section">
+            <h2 class="section-title"><i class="fab fa-instagram"></i> خدمات انستاگرام</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <i class="fas fa-users"></i>
+                    <h3>افزایش فالوور</h3>
+                    <p>افزایش واقعی فالوور ایرانی و خارجی</p>
+                    <p style="color: var(--accent); margin-top: 1rem;">قیمت: از 50,000 تومان</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-heart"></i>
+                    <h3>لایک و کامنت</h3>
+                    <p>افزایش تعامل واقعی در پست‌ها</p>
+                    <p style="color: var(--accent); margin-top: 1rem;">قیمت: از 20,000 تومان</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>اکانت پریمیوم</h3>
+                    <p>فروش اکانت‌های verified و خاص</p>
+                    <p style="color: var(--accent); margin-top: 1rem;">قیمت: از 200,000 تومان</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- فروش اکانت -->
+        <section id="accounts" class="section">
+            <h2 class="section-title"><i class="fas fa-user-shield"></i> فروش اکانت‌های ویژه</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>ایمیل اختصاصی</h3>
+                    <p>Gmail, Outlook, Yahoo - با پسورد اختصاصی</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>اکانت‌های گیمینگ</h3>
+                    <p>Steam, Epic Games, Origin با بازی‌های آپدیت</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-film"></i>
+                    <h3>اکانت‌های استریم</h3>
+                    <p>Netflix, Spotify, YouTube Premium</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- بازی‌ها -->
+        <section id="games" class="section">
+            <h2 class="section-title"><i class="fas fa-ghost"></i> خدمات بازی‌های آنلاین</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <i class="fas fa-skull"></i>
+                    <h3>PUBG UC</h3>
+                    <p>فروش UC ارزان - تحویل فوری</p>
+                    <p style="color: var(--accent);">از 10,000 UC</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-crown"></i>
+                    <h3>Clash of Clans</h3>
+                    <p>اکانت‌های لول بالا - جم و گیم</p>
+                    <p style="color: var(--accent);">TH14 - Max</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-robot"></i>
+                    <h3>هک و اکسپلویت</h3>
+                    <p>ابزارهای پیشرفته برای بازی‌های مختلف</p>
+                    <p style="color: var(--accent);">بدون بن</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- آموزش -->
+        <section id="education" class="section">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> آموزش‌های تخصصی</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <i class="fas fa-brain"></i>
+                    <h3>هوش مصنوعی</h3>
+                    <p>آموزش ChatGPT, Midjourney, DALL-E</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-code"></i>
+                    <h3>برنامه‌نویسی</h3>
+                    <p>Python, JavaScript, Web Development</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-book"></i>
+                    <h3>کتاب‌های الکترونیکی</h3>
+                    <p>مثنوی، فلسفه، برنامه‌نویسی، هوش مصنوعی</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- فرم تماس -->
+        <section id="contact" class="section">
+            <h2 class="section-title">سفارش و تماس</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>اطلاعات تماس</h3>
+                    <p><i class="fas fa-phone"></i> تلفن: 0930***</p>
+                    <p><i class="fab fa-telegram"></i> تلگرام: @ekram</p>
+                    <p><i class="fab fa-instagram"></i> اینستاگرام: @ekram</p>
+                </div>
+                <div class="card">
+                    <h3>ثبت سفارش</h3>
+                    <div class="form-group">
+                        <label>نام و نام خانوادگی</label>
+                        <input type="text" placeholder="نام خود را وارد کنید">
+                    </div>
+                    <div class="form-group">
+                        <label>خدمت مورد نظر</label>
+                        <select>
+                            <option>افزایش فالوور اینستاگرام</option>
+                            <option>خرید UC پابجی</option>
+                            <option>اکانت استریم</option>
+                            <option>آموزش برنامه‌نویسی</option>
+                        </select>
+                    </div>
+                    <button class="btn" style="width: 100%;">ثبت سفارش</button>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <!-- صفحه اصلی -->
-    <div class="main-app" id="mainApp">
-        <div class="dashboard">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div>💰 درآمد امروز</div>
-                    <div class="stat-value" id="dailyIncome">$0</div>
-                    <div>+15% از دیروز</div>
-                </div>
-                <div class="stat-card">
-                    <div>👥 کاربران آنلاین</div>
-                    <div class="stat-value" id="onlineUsers">0</div>
-                    <div>در سراسر جهان</div>
-                </div>
-                <div class="stat-card">
-                    <div>🚀 امتیاز شما</div>
-                    <div class="stat-value" id="userScore">0</div>
-                    <div>رده‌بندی جهانی</div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <footer>
+        <p>© 2024 طراحی شده توسط اکرام شجاع - تمام حقوق محفوظ است</p>
+    </footer>
 
     <script>
-        // سیستم لاگین پیشرفته
-        function advancedLogin() {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            if (!email || !password) {
-                alert('🚨 لطفاً اطلاعات ورود را کامل کنید!');
-                return;
-            }
-
-            // شبیه‌سازی پردازش پیشرفته
-            document.querySelector('.login-btn').textContent = '🔐 در حال احراز هویت...';
-            
-            setTimeout(() => {
-                // ذخیره اطلاعات کاربر
-                localStorage.setItem('advancedUser', JSON.stringify({
-                    email: email,
-                    joinDate: new Date().toLocaleDateString('fa-IR'),
-                    level: 'PREMIUM+',
-                    balance: 1500
-                }));
-
-                // نمایش صفحه اصلی
-                document.getElementById('loginPage').style.display = 'none';
-                document.getElementById('mainApp').style.display = 'block';
-                
-                // آپدیت اطلاعات
-                updateDashboard();
-                
-                alert(`🎉 ورود موفق!\nبه ابر‌سوشال پلاس خوش آمدید\nسطح: PREMIUM+`);
-                
-            }, 2000);
-        }
-
-        // آپدیت داشبورد
-        function updateDashboard() {
-            document.getElementById('dailyIncome').textContent = '$' + (Math.random() * 1000).toFixed(2);
-            document.getElementById('onlineUsers').textContent = Math.floor(Math.random() * 10000) + 5000;
-            document.getElementById('userScore').textContent = Math.floor(Math.random() * 10000);
-        }
-
-        // بررسی کاربر قبلی
-        window.onload = function() {
-            const savedUser = localStorage.getItem('advancedUser');
-            if (savedUser) {
-                document.getElementById('loginPage').style.display = 'none';
-                document.getElementById('mainApp').style.display = 'block';
-                updateDashboard();
-            }
-        }
-
-        // افکت‌های پیشرفته
-        document.addEventListener('mousemove', function(e) {
-            const glowElements = document.querySelectorAll('.glow');
-            glowElements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                el.style.textShadow = `
-                    ${x * 0.01}px ${y * 0.01}px 10px var(--neon),
-                    ${-x * 0.01}px ${-y * 0.01}px 20px var(--secondary)
-                `;
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ 
+                behavior: 'smooth' 
             });
+        }
+
+        // افکت اسکرول برای نوبار
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(26, 26, 46, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(26, 26, 46, 0.95)';
+            }
         });
+
+        // افکت تایپ برای عنوان اصلی
+        const heroTitle = document.querySelector('.hero h1');
+        const text = heroTitle.textContent;
+        heroTitle.textContent = '';
+        let i = 0;
+        
+        function typeWriter() {
+            if (i < text.length) {
+                heroTitle.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        
+        setTimeout(typeWriter, 1000);
     </script>
 </body>
 </html>
