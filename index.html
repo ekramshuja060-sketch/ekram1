@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EkramGram - صفحه اصلی</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -14,26 +13,23 @@
         }
 
         :root {
-            --primary: #E4405F;
-            --secondary: #405DE6;
-            --accent: #FFDC80;
-            --dark: #262626;
-            --light: #FAFAFA;
-            --border: #DBDBDB;
+            --primary: #8A2BE2;
+            --secondary: #FF6B6B;
+            --accent: #4ECDC4;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
         }
 
         body {
             background: var(--light);
-            color: var(--dark);
+            color: #333;
             min-height: 100vh;
-            padding-bottom: 60px;
         }
 
-        /* نوار ناوبری موبایل */
         .navbar {
             background: white;
-            padding: 0.8rem 1rem;
-            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
@@ -44,360 +40,232 @@
         }
 
         .logo {
-            font-size: 1.3rem;
+            font-size: 1.8rem;
             font-weight: bold;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .nav-icons {
+        .nav-links {
             display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
             gap: 1rem;
-            align-items: center;
         }
 
-        .nav-icons i {
-            font-size: 1.2rem;
-            color: var(--dark);
-            cursor: pointer;
-        }
-
-        /* استوری ها برای موبایل */
-        .stories-section {
-            background: white;
-            border: 1px solid var(--border);
-            margin: 60px 0 1rem;
-            padding: 1rem 0.5rem;
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-
-        .stories-container {
-            display: flex;
-            gap: 0.8rem;
-        }
-
-        .story {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            min-width: 70px;
-        }
-
-        .story-avatar {
-            width: 56px;
-            height: 56px;
+        .user-avatar {
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
-            padding: 2px;
-            margin-bottom: 0.3rem;
-        }
-
-        .story-avatar-inner {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--dark);
+            color: white;
             font-weight: bold;
-            font-size: 0.7rem;
         }
 
-        .story-username {
-            font-size: 0.7rem;
-            color: var(--dark);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 60px;
+        .container {
+            max-width: 1200px;
+            margin: 80px auto 2rem;
+            padding: 0 2rem;
         }
 
-        /* پست ها برای موبایل */
-        .posts-container {
-            margin: 0 0.5rem;
-        }
-
-        .post {
+        .welcome-section {
             background: white;
-            border: 1px solid var(--border);
-            border-radius: 8px;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .welcome-section h1 {
+            font-size: 2.5rem;
             margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .post-header {
-            padding: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            border-bottom: 1px solid var(--border);
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
         }
 
-        .post-avatar {
-            width: 32px;
-            height: 32px;
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
+        }
+
+        .btn-logout {
+            background: #ff4757;
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
+            margin: 0 auto 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
+            font-size: 2rem;
             font-weight: bold;
-            font-size: 0.7rem;
-        }
-
-        .post-username {
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .post-image {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .post-actions {
-            padding: 0.8rem;
-            display: flex;
-            gap: 0.8rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .post-actions i {
-            font-size: 1.3rem;
-            cursor: pointer;
-            color: var(--dark);
-        }
-
-        .post-likes, .post-caption, .post-comments, .post-time {
-            padding: 0 0.8rem;
-            font-size: 0.9rem;
-        }
-
-        .post-likes {
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
-
-        .post-caption {
-            margin-bottom: 0.3rem;
-        }
-
-        .post-comments {
-            color: #8E8E8E;
-            margin-bottom: 0.8rem;
-        }
-
-        .post-time {
-            color: #8E8E8E;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            padding-bottom: 0.8rem;
-        }
-
-        .add-comment {
-            padding: 0.8rem;
-            border-top: 1px solid var(--border);
-            display: flex;
-            gap: 0.8rem;
-        }
-
-        .comment-input {
-            flex: 1;
-            border: none;
-            outline: none;
-            font-size: 0.8rem;
-        }
-
-        .post-comment {
-            color: var(--secondary);
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-
-        /* نوار پایین برای موبایل */
-        .mobile-bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-around;
-            padding: 0.5rem;
-            z-index: 1000;
-        }
-
-        .mobile-bottom-nav i {
-            font-size: 1.3rem;
-            color: var(--dark);
-        }
-
-        /* مخفی کردن سایدبار در موبایل */
-        .sidebar {
-            display: none;
-        }
-
-        /* برای تبلت و دسکتاپ */
-        @media (min-width: 768px) {
-            body {
-                padding-bottom: 0;
-            }
-            
-            .mobile-bottom-nav {
-                display: none;
-            }
-            
-            .navbar {
-                padding: 0.8rem 1rem;
-            }
-            
-            .nav-content {
-                display: flex;
-                align-items: center;
-                gap: 2rem;
-                max-width: 975px;
-                margin: 0 auto;
-                width: 100%;
-                justify-content: space-between;
-            }
-            
-            .search-box {
-                background: var(--light);
-                border: 1px solid var(--border);
-                padding: 0.5rem 1rem;
-                border-radius: 8px;
-                width: 250px;
-                color: #8E8E8E;
-                display: block;
-            }
-            
-            .stories-section {
-                max-width: 614px;
-                margin: 80px auto 1rem;
-                border-radius: 8px;
-                padding: 1rem;
-            }
-            
-            .posts-container {
-                max-width: 614px;
-                margin: 0 auto;
-            }
-            
-            .sidebar {
-                display: block;
-                position: fixed;
-                top: 80px;
-                left: 50%;
-                transform: translateX(250px);
-                width: 300px;
-            }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- نوار ناوبری -->
     <nav class="navbar">
         <div class="logo">EkramGram</div>
-        <div class="search-box" style="display: none;">جستجو</div>
-        <div class="nav-icons">
-            <i class="fas fa-paper-plane"></i>
-            <div class="user-avatar" id="navAvatar" style="width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(45deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.7rem; font-weight: bold;"></div>
+        <div class="nav-links">
+            <a href="#"><i class="fas fa-home"></i> خانه</a>
+            <a href="#"><i class="fas fa-search"></i> جستجو</a>
+            <a href="#"><i class="fas fa-plus-square"></i> ایجاد</a>
+            <a href="#"><i class="fas fa-heart"></i> اعلان‌ها</a>
+            <div class="user-info">
+                <div class="user-avatar" id="userAvatar"></div>
+                <span id="userName"></span>
+                <button class="btn btn-logout" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> خروج
+                </button>
+            </div>
         </div>
     </nav>
 
-    <!-- استوری ها -->
-    <div class="stories-section">
-        <div class="stories-container">
-            <div class="story">
-                <div class="story-avatar">
-                    <div class="story-avatar-inner" id="userStoryAvatar">+</div>
-                </div>
-                <div class="story-username">استوری شما</div>
+    <div class="container">
+        <!-- بخش پروفایل -->
+        <div class="profile-section">
+            <div class="profile-avatar" id="profileAvatar"></div>
+            <h1 id="welcomeMessage"></h1>
+            <p>به پنل کاربری EkramGram خوش آمدید</p>
+        </div>
+
+        <!-- ویژگی‌ها -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-store"></i>
+                <h3>فروشگاه</h3>
+                <p>مدیریت محصولات و فروش آنلاین</p>
+                <button class="btn">ورود به فروشگاه</button>
             </div>
-            
-            <div class="story">
-                <div class="story-avatar">
-                    <div class="story-avatar-inner" style="background: linear-gradient(45deg, #FF6B6B, #4ECDC4);">A</div>
-                </div>
-                <div class="story-username">ali_ahmadi</div>
+
+            <div class="feature-card">
+                <i class="fas fa-gamepad"></i>
+                <h3>بازی‌ها</h3>
+                <p>دسترسی به بازی‌های آنلاین</p>
+                <button class="btn">مشاهده بازی‌ها</button>
             </div>
-            
-            <div class="story">
-                <div class="story-avatar">
-                    <div class="story-avatar-inner" style="background: linear-gradient(45deg, #FFD93D, #6BCF7F);">M</div>
-                </div>
-                <div class="story-username">maryam79</div>
+
+            <div class="feature-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>آموزش</h3>
+                <p>دوره‌های آموزشی تخصصی</p>
+                <button class="btn">شروع یادگیری</button>
             </div>
         </div>
-    </div>
 
-    <!-- پست ها -->
-    <div class="posts-container">
-        <div class="post">
-            <div class="post-header">
-                <div class="post-avatar">A</div>
-                <div class="post-username">ali_ahmadi</div>
-            </div>
-            
-            <div class="post-image">طبیعت زیبا 🌲</div>
-            
-            <div class="post-actions">
-                <i class="far fa-heart"></i>
-                <i class="far fa-comment"></i>
-                <i class="far fa-paper-plane"></i>
-            </div>
-            
-            <div class="post-likes">۱,۲۳۴ پسندیدن</div>
-            <div class="post-caption"><strong>ali_ahmadi</strong> از گردش در طبیعت لذت ببرید! 🌳</div>
-            <div class="post-comments">مشاهده ۱۲۴ نظر</div>
-            <div class="post-time">۲ ساعت پیش</div>
-            
-            <div class="add-comment">
-                <input type="text" placeholder="افزودن نظر..." class="comment-input">
-                <div class="post-comment">ارسال</div>
+        <!-- اطلاعات کاربر -->
+        <div class="welcome-section">
+            <h2>پنل مدیریت کاربر</h2>
+            <p>از طریق این پنل می‌توانید به تمام امکانات سایت دسترسی داشته باشید</p>
+            <div style="margin-top: 2rem;">
+                <button class="btn">ویرایش پروفایل</button>
+                <button class="btn">تنظیمات حساب</button>
+                <button class="btn">پشتیبانی</button>
             </div>
         </div>
-    </div>
-
-    <!-- نوار پایین موبایل -->
-    <div class="mobile-bottom-nav">
-        <i class="fas fa-home"></i>
-        <i class="fas fa-search"></i>
-        <i class="fas fa-plus-square"></i>
-        <i class="fas fa-heart"></i>
-        <i class="fas fa-user"></i>
     </div>
 
     <script>
-        const user = localStorage.getItem('user') || 'کاربر';
-        const firstLetter = user.charAt(0).toUpperCase();
-        document.getElementById('navAvatar').textContent = firstLetter;
-        document.getElementById('userStoryAvatar').textContent = firstLetter;
-
+        // بررسی لاگین بودن کاربر
         if(localStorage.getItem('isLoggedIn') !== 'true') {
             window.location.href = 'index.html';
         }
 
-        document.querySelectorAll('.fa-heart').forEach(heart => {
-            heart.addEventListener('click', function() {
-                this.classList.toggle('far');
-                this.classList.toggle('fas');
-                this.style.color = this.classList.contains('fas') ? '#E4405F' : '';
-            });
-        });
+        const user = localStorage.getItem('user') || 'کاربر';
+        
+        // نمایش اطلاعات کاربر
+        document.getElementById('userName').textContent = user;
+        document.getElementById('welcomeMessage').textContent = `سلام ${user}!`;
+        
+        // ایجاد آواتار با حرف اول نام کاربر
+        const firstLetter = user.charAt(0).toUpperCase();
+        document.getElementById('userAvatar').textContent = firstLetter;
+        document.getElementById('profileAvatar').textContent = firstLetter;
+
+        function logout() {
+            localStorage.removeItem('user');
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'index.html';
+        }
     </script>
 </body>
 </html>
