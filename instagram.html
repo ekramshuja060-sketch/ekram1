@@ -530,10 +530,7 @@
         document.getElementById('sidebarUsername').textContent = user;
         document.getElementById('sidebarFullname').textContent = user + ' - کاربر ویژه';
         
-        // بررسی لاگین
-        if(localStorage.getItem('isLoggedIn') !== 'true') {
-            window.location.href = 'index.html';
-        }
+        
 
         // سیستم لایک
         document.querySelectorAll('.fa-heart').forEach(heart => {
