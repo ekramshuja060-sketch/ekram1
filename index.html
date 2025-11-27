@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پلتفرم پیشرفته - اکرام</title>
+    <title>EkramGram - صفحه اصلی</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,399 +14,390 @@
         }
 
         :root {
-            --primary: #8A2BE2;
-            --secondary: #FF6B6B;
-            --accent: #4ECDC4;
-            --dark: #1A1A2E;
-            --light: #F8F9FA;
+            --primary: #E4405F;
+            --secondary: #405DE6;
+            --accent: #FFDC80;
+            --dark: #262626;
+            --light: #FAFAFA;
+            --border: #DBDBDB;
         }
 
         body {
-            background: linear-gradient(135deg, var(--dark) 0%, #16213E 100%);
-            color: var(--light);
+            background: var(--light);
+            color: var(--dark);
             min-height: 100vh;
-            overflow-x: hidden;
+            padding-bottom: 60px;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* نوار ناوبری */
+        /* نوار ناوبری موبایل */
         .navbar {
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
+            background: white;
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid var(--border);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 2px solid var(--primary);
-        }
-
-        .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.3rem;
             font-weight: bold;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .nav-links {
+        .nav-icons {
             display: flex;
-            gap: 2rem;
+            gap: 1rem;
+            align-items: center;
         }
 
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        /* هیرو سکشن */
-        .hero {
-            margin-top: 8rem;
-            text-align: center;
-            padding: 4rem 0;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: glow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 20px var(--primary); }
-            to { text-shadow: 0 0 30px var(--secondary), 0 0 40px var(--accent); }
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        /* بخش‌های مختلف */
-        .section {
-            background: rgba(255, 255, 255, 0.05);
-            margin: 3rem 0;
-            padding: 3rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            color: var(--accent);
-        }
-
-        /* کارت‌ها */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.12);
-        }
-
-        .card i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--secondary);
-        }
-
-        /* فرم‌ها */
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--light);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .btn {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-size: 1.1rem;
+        .nav-icons i {
+            font-size: 1.2rem;
+            color: var(--dark);
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
         }
 
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
+        /* استوری ها برای موبایل */
+        .stories-section {
+            background: white;
+            border: 1px solid var(--border);
+            margin: 60px 0 1rem;
+            padding: 1rem 0.5rem;
+            overflow-x: auto;
+            white-space: nowrap;
         }
 
-        /* انیمیشن‌ها */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        .stories-container {
+            display: flex;
+            gap: 0.8rem;
         }
 
-        .floating {
-            animation: float 6s ease-in-out infinite;
+        .story {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            min-width: 70px;
         }
 
-        /* فوتور */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .story-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            padding: 2px;
+            margin-bottom: 0.3rem;
+        }
+
+        .story-avatar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            font-weight: bold;
+            font-size: 0.7rem;
+        }
+
+        .story-username {
+            font-size: 0.7rem;
+            color: var(--dark);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 60px;
+        }
+
+        /* پست ها برای موبایل */
+        .posts-container {
+            margin: 0 0.5rem;
+        }
+
+        .post {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .post-header {
+            padding: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .post-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.7rem;
+        }
+
+        .post-username {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .post-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .post-actions {
+            padding: 0.8rem;
+            display: flex;
+            gap: 0.8rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .post-actions i {
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        .post-likes, .post-caption, .post-comments, .post-time {
+            padding: 0 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .post-likes {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .post-caption {
+            margin-bottom: 0.3rem;
+        }
+
+        .post-comments {
+            color: #8E8E8E;
+            margin-bottom: 0.8rem;
+        }
+
+        .post-time {
+            color: #8E8E8E;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            padding-bottom: 0.8rem;
+        }
+
+        .add-comment {
+            padding: 0.8rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .comment-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 0.8rem;
+        }
+
+        .post-comment {
+            color: var(--secondary);
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        /* نوار پایین برای موبایل */
+        .mobile-bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5rem;
+            z-index: 1000;
+        }
+
+        .mobile-bottom-nav i {
+            font-size: 1.3rem;
+            color: var(--dark);
+        }
+
+        /* مخفی کردن سایدبار در موبایل */
+        .sidebar {
+            display: none;
+        }
+
+        /* برای تبلت و دسکتاپ */
+        @media (min-width: 768px) {
+            body {
+                padding-bottom: 0;
+            }
+            
+            .mobile-bottom-nav {
+                display: none;
+            }
+            
+            .navbar {
+                padding: 0.8rem 1rem;
+            }
+            
+            .nav-content {
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+                max-width: 975px;
+                margin: 0 auto;
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .search-box {
+                background: var(--light);
+                border: 1px solid var(--border);
+                padding: 0.5rem 1rem;
+                border-radius: 8px;
+                width: 250px;
+                color: #8E8E8E;
+                display: block;
+            }
+            
+            .stories-section {
+                max-width: 614px;
+                margin: 80px auto 1rem;
+                border-radius: 8px;
+                padding: 1rem;
+            }
+            
+            .posts-container {
+                max-width: 614px;
+                margin: 0 auto;
+            }
+            
+            .sidebar {
+                display: block;
+                position: fixed;
+                top: 80px;
+                left: 50%;
+                transform: translateX(250px);
+                width: 300px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- نوار ناوبری -->
     <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo">ECODEV</div>
-            <div class="nav-links">
-                <a href="#instagram">انستاگرام</a>
-                <a href="#accounts">اکانت‌ها</a>
-                <a href="#games">بازی‌ها</a>
-                <a href="#education">آموزش</a>
-                <a href="#contact">تماس</a>
-            </div>
+        <div class="logo">EkramGram</div>
+        <div class="search-box" style="display: none;">جستجو</div>
+        <div class="nav-icons">
+            <i class="fas fa-paper-plane"></i>
+            <div class="user-avatar" id="navAvatar" style="width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(45deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.7rem; font-weight: bold;"></div>
         </div>
     </nav>
 
-    <div class="container">
-        <!-- بخش اصلی -->
-        <section class="hero">
-            <h1 class="floating">پلتفرم جامع اکرام</h1>
-            <p>ارائه خدمات دیجیتال - از اکانت‌های premium تا آموزش‌های تخصصی</p>
-            <button class="btn" onclick="scrollToSection('services')">شروع کنید</button>
-        </section>
-
-        <!-- خدمات انستاگرام -->
-        <section id="instagram" class="section">
-            <h2 class="section-title"><i class="fab fa-instagram"></i> خدمات انستاگرام</h2>
-            <div class="cards-grid">
-                <div class="card">
-                    <i class="fas fa-users"></i>
-                    <h3>افزایش فالوور</h3>
-                    <p>افزایش واقعی فالوور ایرانی و خارجی</p>
-                    <p style="color: var(--accent); margin-top: 1rem;">قیمت: از 50,000 تومان</p>
+    <!-- استوری ها -->
+    <div class="stories-section">
+        <div class="stories-container">
+            <div class="story">
+                <div class="story-avatar">
+                    <div class="story-avatar-inner" id="userStoryAvatar">+</div>
                 </div>
-                <div class="card">
-                    <i class="fas fa-heart"></i>
-                    <h3>لایک و کامنت</h3>
-                    <p>افزایش تعامل واقعی در پست‌ها</p>
-                    <p style="color: var(--accent); margin-top: 1rem;">قیمت: از 20,000 تومان</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>اکانت پریمیوم</h3>
-                    <p>فروش اکانت‌های verified و خاص</p>
-                    <p style="color: var(--accent); margin-top: 1rem;">قیمت: از 200,000 تومان</p>
-                </div>
+                <div class="story-username">استوری شما</div>
             </div>
-        </section>
-
-        <!-- فروش اکانت -->
-        <section id="accounts" class="section">
-            <h2 class="section-title"><i class="fas fa-user-shield"></i> فروش اکانت‌های ویژه</h2>
-            <div class="cards-grid">
-                <div class="card">
-                    <i class="fas fa-envelope"></i>
-                    <h3>ایمیل اختصاصی</h3>
-                    <p>Gmail, Outlook, Yahoo - با پسورد اختصاصی</p>
+            
+            <div class="story">
+                <div class="story-avatar">
+                    <div class="story-avatar-inner" style="background: linear-gradient(45deg, #FF6B6B, #4ECDC4);">A</div>
                 </div>
-                <div class="card">
-                    <i class="fas fa-gamepad"></i>
-                    <h3>اکانت‌های گیمینگ</h3>
-                    <p>Steam, Epic Games, Origin با بازی‌های آپدیت</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-film"></i>
-                    <h3>اکانت‌های استریم</h3>
-                    <p>Netflix, Spotify, YouTube Premium</p>
-                </div>
+                <div class="story-username">ali_ahmadi</div>
             </div>
-        </section>
-
-        <!-- بازی‌ها -->
-        <section id="games" class="section">
-            <h2 class="section-title"><i class="fas fa-ghost"></i> خدمات بازی‌های آنلاین</h2>
-            <div class="cards-grid">
-                <div class="card">
-                    <i class="fas fa-skull"></i>
-                    <h3>PUBG UC</h3>
-                    <p>فروش UC ارزان - تحویل فوری</p>
-                    <p style="color: var(--accent);">از 10,000 UC</p>
+            
+            <div class="story">
+                <div class="story-avatar">
+                    <div class="story-avatar-inner" style="background: linear-gradient(45deg, #FFD93D, #6BCF7F);">M</div>
                 </div>
-                <div class="card">
-                    <i class="fas fa-crown"></i>
-                    <h3>Clash of Clans</h3>
-                    <p>اکانت‌های لول بالا - جم و گیم</p>
-                    <p style="color: var(--accent);">TH14 - Max</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-robot"></i>
-                    <h3>هک و اکسپلویت</h3>
-                    <p>ابزارهای پیشرفته برای بازی‌های مختلف</p>
-                    <p style="color: var(--accent);">بدون بن</p>
-                </div>
+                <div class="story-username">maryam79</div>
             </div>
-        </section>
-
-        <!-- آموزش -->
-        <section id="education" class="section">
-            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> آموزش‌های تخصصی</h2>
-            <div class="cards-grid">
-                <div class="card">
-                    <i class="fas fa-brain"></i>
-                    <h3>هوش مصنوعی</h3>
-                    <p>آموزش ChatGPT, Midjourney, DALL-E</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-code"></i>
-                    <h3>برنامه‌نویسی</h3>
-                    <p>Python, JavaScript, Web Development</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-book"></i>
-                    <h3>کتاب‌های الکترونیکی</h3>
-                    <p>مثنوی، فلسفه، برنامه‌نویسی، هوش مصنوعی</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- فرم تماس -->
-        <section id="contact" class="section">
-            <h2 class="section-title">سفارش و تماس</h2>
-            <div class="cards-grid">
-                <div class="card">
-                    <h3>اطلاعات تماس</h3>
-                    <p><i class="fas fa-phone"></i> تلفن: 0930***</p>
-                    <p><i class="fab fa-telegram"></i> تلگرام: @ekram</p>
-                    <p><i class="fab fa-instagram"></i> اینستاگرام: @ekram</p>
-                </div>
-                <div class="card">
-                    <h3>ثبت سفارش</h3>
-                    <div class="form-group">
-                        <label>نام و نام خانوادگی</label>
-                        <input type="text" placeholder="نام خود را وارد کنید">
-                    </div>
-                    <div class="form-group">
-                        <label>خدمت مورد نظر</label>
-                        <select>
-                            <option>افزایش فالوور اینستاگرام</option>
-                            <option>خرید UC پابجی</option>
-                            <option>اکانت استریم</option>
-                            <option>آموزش برنامه‌نویسی</option>
-                        </select>
-                    </div>
-                    <button class="btn" style="width: 100%;">ثبت سفارش</button>
-                </div>
-            </div>
-        </section>
+        </div>
     </div>
 
-    <footer>
-        <p>© 2024 طراحی شده توسط اکرام شجاع - تمام حقوق محفوظ است</p>
-    </footer>
+    <!-- پست ها -->
+    <div class="posts-container">
+        <div class="post">
+            <div class="post-header">
+                <div class="post-avatar">A</div>
+                <div class="post-username">ali_ahmadi</div>
+            </div>
+            
+            <div class="post-image">طبیعت زیبا 🌲</div>
+            
+            <div class="post-actions">
+                <i class="far fa-heart"></i>
+                <i class="far fa-comment"></i>
+                <i class="far fa-paper-plane"></i>
+            </div>
+            
+            <div class="post-likes">۱,۲۳۴ پسندیدن</div>
+            <div class="post-caption"><strong>ali_ahmadi</strong> از گردش در طبیعت لذت ببرید! 🌳</div>
+            <div class="post-comments">مشاهده ۱۲۴ نظر</div>
+            <div class="post-time">۲ ساعت پیش</div>
+            
+            <div class="add-comment">
+                <input type="text" placeholder="افزودن نظر..." class="comment-input">
+                <div class="post-comment">ارسال</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نوار پایین موبایل -->
+    <div class="mobile-bottom-nav">
+        <i class="fas fa-home"></i>
+        <i class="fas fa-search"></i>
+        <i class="fas fa-plus-square"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-user"></i>
+    </div>
 
     <script>
-        function scrollToSection(sectionId) {
-            document.getElementById(sectionId).scrollIntoView({ 
-                behavior: 'smooth' 
+        const user = localStorage.getItem('user') || 'کاربر';
+        const firstLetter = user.charAt(0).toUpperCase();
+        document.getElementById('navAvatar').textContent = firstLetter;
+        document.getElementById('userStoryAvatar').textContent = firstLetter;
+
+        if(localStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.href = 'index.html';
+        }
+
+        document.querySelectorAll('.fa-heart').forEach(heart => {
+            heart.addEventListener('click', function() {
+                this.classList.toggle('far');
+                this.classList.toggle('fas');
+                this.style.color = this.classList.contains('fas') ? '#E4405F' : '';
             });
-        }
-
-        // افکت اسکرول برای نوبار
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(26, 26, 46, 0.98)';
-            } else {
-                navbar.style.background = 'rgba(26, 26, 46, 0.95)';
-            }
         });
-
-        // افکت تایپ برای عنوان اصلی
-        const heroTitle = document.querySelector('.hero h1');
-        const text = heroTitle.textContent;
-        heroTitle.textContent = '';
-        let i = 0;
-        
-        function typeWriter() {
-            if (i < text.length) {
-                heroTitle.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            }
-        }
-        
-        setTimeout(typeWriter, 1000);
     </script>
 </body>
 </html>
