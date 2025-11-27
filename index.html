@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابر‌سوشال پلاس - نسل بعدی شبکه‌های اجتماعی</title>
+    <style>
+        :root {
+            --primary: #FF2E63;
+            --secondary: #08D9D6;
+            --premium: #FFD700;
+            --dark: #0f0f23;
+            --light: #ffffff;
+            --neon: #00ff88;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0f23, #1a1a2e);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* افکت‌های پیشرفته */
+        .glow {
+            text-shadow: 0 0 10px var(--neon), 0 0 20px var(--neon), 0 0 30px var(--neon);
+        }
+        
+        .neon-border {
+            border: 2px solid var(--neon);
+            box-shadow: 0 0 10px var(--neon), inset 0 0 10px var(--neon);
+        }
+        
+        /* صفحه لاگین پیشرفته */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f23 100%);
+            position: relative;
+        }
+        
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 136, 0.1) 50%, transparent 70%);
+            animation: scan 3s linear infinite;
+        }
+        
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        
+        .login-box {
+            background: rgba(15, 15, 35, 0.9);
+            padding: 50px;
+            border-radius: 25px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            box-shadow: 0 0 50px rgba(0, 255, 136, 0.2);
+            backdrop-filter: blur(20px);
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--neon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { filter: hue-rotate(0deg); }
+            to { filter: hue-rotate(360deg); }
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--neon);
+            font-weight: bold;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light);
+            font-size: 16px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        .input-group input:focus {
+            border-color: var(--neon);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            transform: scale(1.02);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .login-btn:hover::before {
+            left: 100%;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 46, 99, 0.4);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .feature {
+            background: rgba(0, 255, 136, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+        
+        .premium-badge {
+            background: linear-gradient(45deg, var(--premium), #FFA500);
+            color: black;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        /* صفحه اصلی */
+        .main-app {
+            display: none;
+        }
+        
+        .dashboard {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: rgba(15, 15, 35, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--neon), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 10px 0;
+        }
+        
+        /* رسپانسیو */
+        @media (max-width: 768px) {
+            .login-box {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- صفحه لاگین -->
+    <div class="login-container" id="loginPage">
+        <div class="login-box">
+            <div class="logo">ابر‌سوشال پلاس</div>
+            <p style="text-align: center; margin-bottom: 30px; color: #08D9D6;">
+                نسل بعدی شبکه‌های اجتماعی • هوش مصنوعی • متاورس
+            </p>
+            
+            <div class="input-group">
+                <label>📧 ایمیل پیشرفته</label>
+                <input type="email" id="email" placeholder="your.email@domain.com" required>
+            </div>
+            
+            <div class="input-group">
+                <label>🔐 پسورد امنیتی</label>
+                <input type="password" id="password" placeholder••••••••••" required>
+            </div>
+            
+            <button class="login-btn" onclick="advancedLogin()">
+                🚀 ورود به سیستم پیشرفته
+            </button>
+            
+            <div class="features">
+                <div class="feature">🤖 هوش مصنوعی</div>
+                <div class="feature">💰 درآمد روزانه</div>
+                <div class="feature">🎮 متاورس</div>
+                <div class="feature">🔒 امنیت فوق‌العاده</div>
+            </div>
+            
+            <div style="margin-top: 25px; padding: 20px; background: rgba(255, 46, 99, 0.1); border-radius: 10px; border: 1px solid rgba(255, 46, 99, 0.3);">
+                <p style="text-align: center; margin: 0;">
+                    <strong>ساخته شده توسط اکرم شجاع</strong><br>
+                    📞 ۰۰۹۳۷۰۰۶۱۶۳۶۲ • 📧 ekramshuja060@gmail.com
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحه اصلی -->
+    <div class="main-app" id="mainApp">
+        <div class="dashboard">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div>💰 درآمد امروز</div>
+                    <div class="stat-value" id="dailyIncome">$0</div>
+                    <div>+15% از دیروز</div>
+                </div>
+                <div class="stat-card">
+                    <div>👥 کاربران آنلاین</div>
+                    <div class="stat-value" id="onlineUsers">0</div>
+                    <div>در سراسر جهان</div>
+                </div>
+                <div class="stat-card">
+                    <div>🚀 امتیاز شما</div>
+                    <div class="stat-value" id="userScore">0</div>
+                    <div>رده‌بندی جهانی</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // سیستم لاگین پیشرفته
+        function advancedLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                alert('🚨 لطفاً اطلاعات ورود را کامل کنید!');
+                return;
+            }
+
+            // شبیه‌سازی پردازش پیشرفته
+            document.querySelector('.login-btn').textContent = '🔐 در حال احراز هویت...';
+            
+            setTimeout(() => {
+                // ذخیره اطلاعات کاربر
+                localStorage.setItem('advancedUser', JSON.stringify({
+                    email: email,
+                    joinDate: new Date().toLocaleDateString('fa-IR'),
+                    level: 'PREMIUM+',
+                    balance: 1500
+                }));
+
+                // نمایش صفحه اصلی
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('mainApp').style.display = 'block';
+                
+                // آپدیت اطلاعات
+                updateDashboard();
+                
+                alert(`🎉 ورود موفق!\nبه ابر‌سوشال پلاس خوش آمدید\nسطح: PREMIUM+`);
+                
+            }, 2000);
+        }
+
+        // آپدیت داشبورد
+        function updateDashboard() {
+            document.getElementById('dailyIncome').textContent = '$' + (Math.random() * 1000).toFixed(2);
+            document.getElementById('onlineUsers').textContent = Math.floor(Math.random() * 10000) + 5000;
+            document.getElementById('userScore').textContent = Math.floor(Math.random() * 10000);
+        }
+
+        // بررسی کاربر قبلی
+        window.onload = function() {
+            const savedUser = localStorage.getItem('advancedUser');
+            if (savedUser) {
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('mainApp').style.display = 'block';
+                updateDashboard();
+            }
+        }
+
+        // افکت‌های پیشرفته
+        document.addEventListener('mousemove', function(e) {
+            const glowElements = document.querySelectorAll('.glow');
+            glowElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                el.style.textShadow = `
+                    ${x * 0.01}px ${y * 0.01}px 10px var(--neon),
+                    ${-x * 0.01}px ${-y * 0.01}px 20px var(--secondary)
+                `;
+            });
+        });
+    </script>
+</body>
+</html>
