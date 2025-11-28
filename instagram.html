@@ -1,546 +1,143 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EkramGram - صفحه اصلی</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>اکرام - اینستاگرام</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        :root {
-            --primary: #E4405F;
-            --secondary: #405DE6;
-            --accent: #FFDC80;
-            --dark: #262626;
-            --light: #FAFAFA;
-            --border: #DBDBDB;
-        }
-
         body {
-            background: var(--light);
-            color: var(--dark);
+            background: #fafafa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
             min-height: 100vh;
         }
-
-        /* نوار ناوبری */
-        .navbar {
+        .header {
             background: white;
-            padding: 0.8rem 1rem;
-            border-bottom: 1px solid var(--border);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-content {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            max-width: 975px;
-            margin: 0 auto;
-            width: 100%;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 1.5rem;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #dbdbdb;
+            font-size: 20px;
             font-weight: bold;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
-
-        .search-box {
-            background: var(--light);
-            border: 1px solid var(--border);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            width: 250px;
-            color: #8E8E8E;
-        }
-
-        .nav-icons {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .nav-icons i {
-            font-size: 1.3rem;
-            color: var(--dark);
-            cursor: pointer;
-        }
-
-        /* استوری ها */
-        .stories-section {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 80px auto 1rem;
-            max-width: 614px;
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-
-        .stories-container {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .story {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .story-avatar {
-            width: 66px;
-            height: 66px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            padding: 2px;
-            margin-bottom: 0.5rem;
-        }
-
-        .story-avatar-inner {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark);
-            font-weight: bold;
-            font-size: 0.8rem;
-        }
-
-        .story-username {
-            font-size: 0.8rem;
-            color: var(--dark);
-        }
-
-        /* پست ها */
-        .posts-container {
-            max-width: 614px;
-            margin: 0 auto;
-        }
-
         .post {
-            background: white;
-            border: 1px solid var(--border);
+            margin: 15px;
+            border: 1px solid #dbdbdb;
             border-radius: 8px;
-            margin-bottom: 1rem;
+            background: white;
         }
-
         .post-header {
-            padding: 1rem;
+            padding: 10px;
             display: flex;
             align-items: center;
-            gap: 1rem;
-            border-bottom: 1px solid var(--border);
+            gap: 10px;
         }
-
-        .post-avatar {
+        .avatar {
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            background: linear-gradient(45deg, #405DE6, #E4405F);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 0.8rem;
         }
-
-        .post-username {
-            font-weight: 600;
-        }
-
         .post-image {
             width: 100%;
-            height: 400px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            height: 300px;
+            background: linear-gradient(45deg, #405DE6, #E4405F);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.5rem;
+            font-size: 18px;
         }
-
-        .post-actions {
-            padding: 1rem;
+        .actions {
+            padding: 10px;
             display: flex;
-            gap: 1rem;
-            border-bottom: 1px solid var(--border);
+            gap: 15px;
         }
-
-        .post-actions i {
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--dark);
+        .actions i {
+            font-size: 24px;
+            color: #262626;
         }
-
-        .post-actions i.fa-heart:hover {
-            color: var(--primary);
-        }
-
-        .post-likes {
-            padding: 0 1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .post-caption {
-            padding: 0 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .post-comments {
-            padding: 0 1rem;
-            color: #8E8E8E;
-            margin-bottom: 1rem;
-        }
-
-        .post-time {
-            padding: 0 1rem 1rem;
-            color: #8E8E8E;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-        }
-
-        .add-comment {
-            padding: 1rem;
-            border-top: 1px solid var(--border);
-            display: flex;
-            gap: 1rem;
-        }
-
-        .comment-input {
-            flex: 1;
-            border: none;
-            outline: none;
-            font-size: 0.9rem;
-        }
-
-        .post-comment {
-            color: var(--secondary);
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        /* سایدبار */
-        .sidebar {
-            position: fixed;
-            top: 80px;
-            left: 50%;
-            transform: translateX(250px);
-            width: 300px;
-        }
-
-        .profile-sidebar {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .profile-sidebar-avatar {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
+        .likes {
+            padding: 0 10px;
             font-weight: bold;
+            margin-bottom: 5px;
         }
-
-        .profile-info h4 {
-            font-weight: 600;
-        }
-
-        .profile-info p {
-            color: #8E8E8E;
-            font-size: 0.9rem;
-        }
-
-        .suggestions {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1rem;
-        }
-
-        .suggestions-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-        }
-
-        .suggestions-header h4 {
-            color: #8E8E8E;
-            font-weight: 600;
-        }
-
-        .see-all {
-            color: var(--dark);
-            font-weight: 600;
-            font-size: 0.8rem;
-            cursor: pointer;
-        }
-
-        .suggestion-user {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .suggestion-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 0.7rem;
-            font-weight: bold;
-        }
-
-        .follow {
-            color: var(--secondary);
-            font-weight: 600;
-            font-size: 0.8rem;
-            cursor: pointer;
-            margin-left: auto;
-        }
-
-        .main-container {
-            display: flex;
-            justify-content: center;
-            position: relative;
+        .caption {
+            padding: 0 10px 10px;
+            color: #262626;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- نوار ناوبری -->
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo">EkramGram</div>
-            
-            <div class="search-box">
-                <span>جستجو</span>
+    <div class="container">
+        <div class="header">EkramGram</div>
+        
+        <div class="post">
+            <div class="post-header">
+                <div class="avatar">E</div>
+                <div>ekram_shuja</div>
             </div>
-            
-            <div class="nav-icons">
-                <i class="fas fa-home"></i>
-                <i class="fas fa-paper-plane"></i>
-                <i class="fas fa-plus-square"></i>
-                <i class="fas fa-compass"></i>
-                <i class="fas fa-heart"></i>
-                <div class="user-avatar" id="navAvatar" style="width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(45deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.7rem; font-weight: bold;"></div>
+            <div class="post-image">
+                پست اول در EkramGram
             </div>
-        </div>
-    </nav>
-
-    <div class="main-container">
-        <!-- محتوای اصلی -->
-        <div class="content">
-            <!-- استوری ها -->
-            <div class="stories-section">
-                <div class="stories-container">
-                    <!-- استوری کاربر -->
-                    <div class="story">
-                        <div class="story-avatar">
-                            <div class="story-avatar-inner" id="userStoryAvatar">
-                                +
-                            </div>
-                        </div>
-                        <div class="story-username">استوری شما</div>
-                    </div>
-                    
-                    <!-- استوری های دیگران -->
-                    <div class="story">
-                        <div class="story-avatar">
-                            <div class="story-avatar-inner" style="background: linear-gradient(45deg, #FF6B6B, #4ECDC4);">
-                                A
-                            </div>
-                        </div>
-                        <div class="story-username">ali_ahmadi</div>
-                    </div>
-                    
-                    <div class="story">
-                        <div class="story-avatar">
-                            <div class="story-avatar-inner" style="background: linear-gradient(45deg, #FFD93D, #6BCF7F);">
-                                M
-                            </div>
-                        </div>
-                        <div class="story-username">maryam79</div>
-                    </div>
-                    
-                    <div class="story">
-                        <div class="story-avatar">
-                            <div class="story-avatar-inner" style="background: linear-gradient(45deg, #A8E6CF, #FF8B94);">
-                                R
-                            </div>
-                        </div>
-                        <div class="story-username">reza_karimi</div>
-                    </div>
-                </div>
+            <div class="actions">
+                <i class="far fa-heart"></i>
+                <i class="far fa-comment"></i>
+                <i class="far fa-paper-plane"></i>
             </div>
-
-            <!-- پست ها -->
-            <div class="posts-container">
-                <!-- پست ۱ -->
-                <div class="post">
-                    <div class="post-header">
-                        <div class="post-avatar">A</div>
-                        <div class="post-username">ali_ahmadi</div>
-                    </div>
-                    
-                    <div class="post-image">
-                        طبیعت زیبا 🌲
-                    </div>
-                    
-                    <div class="post-actions">
-                        <i class="far fa-heart"></i>
-                        <i class="far fa-comment"></i>
-                        <i class="far fa-paper-plane"></i>
-                        <i class="far fa-bookmark" style="margin-left: auto;"></i>
-                    </div>
-                    
-                    <div class="post-likes">۱,۲۳۴ پسندیدن</div>
-                    <div class="post-caption">
-                        <strong>ali_ahmadi</strong> از گردش در طبیعت لذت ببرید! 🌳
-                    </div>
-                    <div class="post-comments">مشاهده ۱۲۴ نظر</div>
-                    <div class="post-time">۲ ساعت پیش</div>
-                    
-                    <div class="add-comment">
-                        <input type="text" placeholder="افزودن نظر..." class="comment-input">
-                        <div class="post-comment">ارسال</div>
-                    </div>
-                </div>
-
-                <!-- پست ۲ -->
-                <div class="post">
-                    <div class="post-header">
-                        <div class="post-avatar">M</div>
-                        <div class="post-username">maryam79</div>
-                    </div>
-                    
-                    <div class="post-image" style="background: linear-gradient(45deg, #FF6B6B, #4ECDC4);">
-                        طراحی وب 🎨
-                    </div>
-                    
-                    <div class="post-actions">
-                        <i class="far fa-heart"></i>
-                        <i class="far fa-comment"></i>
-                        <i class="far fa-paper-plane"></i>
-                        <i class="far fa-bookmark" style="margin-left: auto;"></i>
-                    </div>
-                    
-                    <div class="post-likes">۸۹۷ پسندیدن</div>
-                    <div class="post-caption">
-                        <strong>maryam79</strong> پروژه جدید طراحی وبسایت تکمیل شد! 💻
-                    </div>
-                    <div class="post-comments">مشاهده ۶۷ نظر</div>
-                    <div class="post-time">۵ ساعت پیش</div>
-                    
-                    <div class="add-comment">
-                        <input type="text" placeholder="افزودن نظر..." class="comment-input">
-                        <div class="post-comment">ارسال</div>
-                    </div>
-                </div>
+            <div class="likes">۱,۲۳۴ پسندیدن</div>
+            <div class="caption">
+                <strong>ekram_shuja</strong> به EkramGram خوش آمدید! 🎉
             </div>
         </div>
 
-        <!-- سایدبار -->
-        <div class="sidebar">
-            <div class="profile-sidebar">
-                <div class="profile-sidebar-avatar" id="sidebarAvatar"></div>
-                <div class="profile-info">
-                    <h4 id="sidebarUsername"></h4>
-                    <p id="sidebarFullname"></p>
-                </div>
+        <div class="post">
+            <div class="post-header">
+                <div class="avatar" style="background: linear-gradient(45deg, #FF6B6B, #4ECDC4);">A</div>
+                <div>ali_ahmadi</div>
             </div>
-            
-            <div class="suggestions">
-                <div class="suggestions-header">
-                    <h4>پیشنهادات برای شما</h4>
-                    <div class="see-all">مشاهده همه</div>
-                </div>
-                
-                <div class="suggestion-user">
-                    <div class="suggestion-avatar">H</div>
-                    <div>
-                        <div style="font-weight: 600;">hossein_z</div>
-                        <div style="font-size: 0.8rem; color: #8E8E8E;">پیشنهاد شده</div>
-                    </div>
-                    <div class="follow">دنبال کردن</div>
-                </div>
-                
-                <div class="suggestion-user">
-                    <div class="suggestion-avatar">S</div>
-                    <div>
-                        <div style="font-weight: 600;">sara_mohammadi</div>
-                        <div style="font-size: 0.8rem; color: #8E8E8E;">پیشنهاد شده</div>
-                    </div>
-                    <div class="follow">دنبال کردن</div>
-                </div>
-                
-                <div class="suggestion-user">
-                    <div class="suggestion-avatar">P</div>
-                    <div>
-                        <div style="font-weight: 600;">parsa_tech</div>
-                        <div style="font-size: 0.8rem; color: #8E8E8E;">پیشنهاد شده</div>
-                    </div>
-                    <div class="follow">دنبال کردن</div>
-                </div>
+            <div class="post-image" style="background: linear-gradient(45deg, #FF6B6B, #4ECDC4);">
+                طبیعت زیبا 🌲
+            </div>
+            <div class="actions">
+                <i class="far fa-heart"></i>
+                <i class="far fa-comment"></i>
+                <i class="far fa-paper-plane"></i>
+            </div>
+            <div class="likes">۸۹۷ پسندیدن</div>
+            <div class="caption">
+                <strong>ali_ahmadi</strong> از گردش در طبیعت لذت ببرید! 🌳
             </div>
         </div>
     </div>
 
     <script>
-        // اطلاعات کاربر
-        const user = localStorage.getItem('user') || 'کاربر';
-        const firstLetter = user.charAt(0).toUpperCase();
-        
-        // تنظیم آواتارها
-        document.getElementById('navAvatar').textContent = firstLetter;
-        document.getElementById('userStoryAvatar').textContent = firstLetter;
-        document.getElementById('sidebarAvatar').textContent = firstLetter;
-        document.getElementById('sidebarUsername').textContent = user;
-        document.getElementById('sidebarFullname').textContent = user + ' - کاربر ویژه';
-        
-        // بررسی لاگین
-        if(localStorage.getItem('isLoggedIn') !== 'true') {
-            window.location.href = 'index.html';
-        }
-
-        // سیستم لایک
+        // سیستم لایک ساده
         document.querySelectorAll('.fa-heart').forEach(heart => {
             heart.addEventListener('click', function() {
-                this.classList.toggle('far');
-                this.classList.toggle('fas');
-                this.style.color = this.classList.contains('fas') ? '#E4405F' : '';
+                if(this.classList.contains('far')) {
+                    this.classList.remove('far');
+                    this.classList.add('fas');
+                    this.style.color = '#E4405F';
+                } else {
+                    this.classList.remove('fas');
+                    this.classList.add('far');
+                    this.style.color = '';
+                }
             });
         });
     </script>
