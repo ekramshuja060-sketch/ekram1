@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EKRAM HUB - مرکز درآمد و خدمات</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>EKRAM HUB - Income Center</title>
     <style>
         :root {
             --primary: #7E57C2;
@@ -28,22 +27,21 @@
         body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
         }
 
         /* صفحه لاگین */
         .login-page {
-            background: rgba(255,255,255,0.95);
-            border-radius: 20px;
-            padding: 3rem;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 20px auto;
             max-width: 400px;
-            margin: 50px auto;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             text-align: center;
         }
 
         .logo {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: bold;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
@@ -53,15 +51,14 @@
 
         .form-group {
             margin-bottom: 1rem;
-            text-align: right;
         }
 
         .form-group input {
             width: 100%;
             padding: 12px;
-            border: 2px solid #ddd;
+            border: 1px solid #ddd;
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 16px;
         }
 
         .login-btn {
@@ -71,7 +68,7 @@
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 16px;
             cursor: pointer;
             margin: 1rem 0;
         }
@@ -83,49 +80,41 @@
 
         .header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             color: white;
         }
 
         .stats {
             display: flex;
-            justify-content: center;
-            gap: 1rem;
+            flex-direction: column;
+            gap: 0.5rem;
             margin: 1rem 0;
-            flex-wrap: wrap;
         }
 
         .stat-card {
             background: rgba(255,255,255,0.2);
-            padding: 1rem;
+            padding: 0.8rem;
             border-radius: 10px;
-            backdrop-filter: blur(10px);
             color: white;
+            text-align: center;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            grid-template-columns: 1fr;
+            gap: 1rem;
         }
 
         .service-card {
-            background: rgba(255,255,255,0.95);
-            border-radius: 15px;
-            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
         }
 
         .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
         }
 
         .service-card.instagram .service-icon { color: var(--instagram); }
@@ -135,14 +124,9 @@
         .service-card.pubg .service-icon { color: var(--pubg); }
         .service-card.youtube .service-icon { color: var(--youtube); }
         .service-card.chatgpt .service-icon { color: var(--success); }
-        .service-card.translate .service-icon { color: var(--primary); }
-        .service-card.appstore .service-icon { color: #007AFF; }
-        .service-card.playstore .service-icon { color: #34A853; }
-        .service-card.books .service-icon { color: #8B4513; }
-        .service-card.income .service-icon { color: #FFD700; }
 
         .service-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
             color: #333;
@@ -150,12 +134,12 @@
 
         .service-desc {
             color: #666;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             font-size: 0.9rem;
         }
 
         .price {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
             color: var(--primary);
             margin: 0.5rem 0;
@@ -164,73 +148,84 @@
         .income-badge {
             background: linear-gradient(45deg, #FFD700, #FFA500);
             color: #333;
-            padding: 0.3rem 1rem;
-            border-radius: 15px;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
             font-size: 0.8rem;
             font-weight: bold;
-            margin: 0.5rem 0;
+            margin: 0.3rem 0;
         }
 
         .action-btn {
             background: var(--primary);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
+            padding: 8px 16px;
+            border-radius: 20px;
             cursor: pointer;
-            font-weight: bold;
-            margin: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .action-btn:hover {
-            transform: scale(1.05);
+            font-size: 14px;
+            margin: 0.3rem;
+            width: 100%;
         }
 
         .action-btn.buy {
             background: var(--success);
         }
 
-        .action-btn.view {
-            background: var(--secondary);
+        /* برای تبلت */
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats {
+                flex-direction: row;
+                justify-content: center;
+            }
+            
+            .stat-card {
+                min-width: 150px;
+            }
+            
+            .action-btn {
+                width: auto;
+            }
         }
 
-        .action-btn.income {
-            background: #FFD700;
-            color: #333;
+        /* برای دسکتاپ */
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- صفحه لاگین -->
     <div class="login-page" id="loginPage">
         <div class="logo">EKRAM HUB</div>
-        <p style="color: #666; margin-bottom: 2rem;">ورود به سیستم درآمدزایی</p>
+        <p style="color: #666; margin-bottom: 1rem;">Login to Income System</p>
         
         <form id="loginForm">
             <div class="form-group">
-                <input type="email" id="loginEmail" placeholder="ایمیل" required>
+                <input type="email" id="loginEmail" placeholder="Email" required>
             </div>
             <div class="form-group">
-                <input type="password" id="loginPassword" placeholder="رمز عبور" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
             </div>
-            <button type="submit" class="login-btn">ورود به سیستم</button>
+            <button type="submit" class="login-btn">Login</button>
         </form>
-
-        <div style="margin-top: 1rem;">
-            <a href="#" style="color: var(--primary); text-decoration: none;">ثبت نام کنید</a>
-        </div>
     </div>
 
     <!-- صفحه اصلی -->
     <div class="main-page" id="mainPage">
         <div class="header">
             <div class="logo">EKRAM HUB</div>
-            <p>سیستم درآمدزایی و خدمات دیجیتال</p>
+            <p>Digital Services & Income System</p>
             <div class="stats">
-                <div class="stat-card">💰 درآمد امروز: ۲۵۰,۰۰۰ تومان</div>
-                <div class="stat-card">👥 کاربران فعال: ۱,۲۳۴</div>
-                <div class="stat-card">⭐ امتیاز: ۴.۹/۵</div>
+                <div class="stat-card">💰 Income: $1,250</div>
+                <div class="stat-card">👥 Users: 1,234</div>
+                <div class="stat-card">⭐ Rating: 4.9/5</div>
             </div>
         </div>
 
@@ -240,12 +235,11 @@
                 <div class="service-icon">
                     <i class="fab fa-instagram"></i>
                 </div>
-                <div class="service-title">اینستاگرام</div>
-                <div class="service-desc">افزایش فالوور، لایک، ویو استوری</div>
-                <div class="income-badge">درآمد از هر فروش: ۳۰,۰۰۰ تومان</div>
-                <div class="price">از ۵۰,۰۰۰ تومان</div>
-                <button class="action-btn buy" onclick="buyService('اینستاگرام')">خرید سرویس</button>
-                <button class="action-btn view" onclick="viewDetails('اینستاگرام')">مشاهده جزئیات</button>
+                <div class="service-title">Instagram</div>
+                <div class="service-desc">Followers, Likes, Views</div>
+                <div class="income-badge">Income: $2 per sale</div>
+                <div class="price">From $2</div>
+                <button class="action-btn buy" onclick="buyService('Instagram')">Buy Service</button>
             </div>
 
             <!-- واتساپ -->
@@ -253,12 +247,11 @@
                 <div class="service-icon">
                     <i class="fab fa-whatsapp"></i>
                 </div>
-                <div class="service-title">واتساپ بیزینس</div>
-                <div class="service-desc">ربات پیامرسان، پشتیبانی خودکار</div>
-                <div class="income-badge">درآمد از هر فروش: ۵۰,۰۰۰ تومان</div>
-                <div class="price">از ۱۰۰,۰۰۰ تومان</div>
-                <button class="action-btn buy" onclick="buyService('واتساپ')">خرید سرویس</button>
-                <button class="action-btn income" onclick="showIncome('واتساپ')">درآمد من</button>
+                <div class="service-title">WhatsApp Business</div>
+                <div class="service-desc">Chatbot, Auto Reply</div>
+                <div class="income-badge">Income: $3 per sale</div>
+                <div class="price">From $4</div>
+                <button class="action-btn buy" onclick="buyService('WhatsApp')">Buy Service</button>
             </div>
 
             <!-- فیسبوک -->
@@ -266,12 +259,11 @@
                 <div class="service-icon">
                     <i class="fab fa-facebook"></i>
                 </div>
-                <div class="service-title">فیسبوک</div>
-                <div class="service-desc">افزایش لایک صفحه، فالوور</div>
-                <div class="income-badge">درآمد از هر فروش: ۲۵,۰۰۰ تومان</div>
-                <div class="price">از ۷۰,۰۰۰ تومان</div>
-                <button class="action-btn buy" onclick="buyService('فیسبوک')">خرید سرویس</button>
-                <button class="action-btn view" onclick="viewDetails('فیسبوک')">مشاهده جزئیات</button>
+                <div class="service-title">Facebook</div>
+                <div class="service-desc">Page Likes, Followers</div>
+                <div class="income-badge">Income: $1.5 per sale</div>
+                <div class="price">From $3</div>
+                <button class="action-btn buy" onclick="buyService('Facebook')">Buy Service</button>
             </div>
 
             <!-- تلگرام -->
@@ -279,12 +271,11 @@
                 <div class="service-icon">
                     <i class="fab fa-telegram"></i>
                 </div>
-                <div class="service-title">تلگرام</div>
-                <div class="service-desc">افزایش ممبر کانال، ویو پست</div>
-                <div class="income-badge">درآمد از هر فروش: ۲۰,۰۰۰ تومان</div>
-                <div class="price">از ۴۰,۰۰۰ تومان</div>
-                <button class="action-btn buy" onclick="buyService('تلگرام')">خرید سرویس</button>
-                <button class="action-btn income" onclick="showIncome('تلگرام')">درآمد من</button>
+                <div class="service-title">Telegram</div>
+                <div class="service-desc">Channel Members, Views</div>
+                <div class="income-badge">Income: $1 per sale</div>
+                <div class="price">From $2</div>
+                <button class="action-btn buy" onclick="buyService('Telegram')">Buy Service</button>
             </div>
 
             <!-- پابجی -->
@@ -292,12 +283,11 @@
                 <div class="service-icon">
                     <i class="fas fa-gamepad"></i>
                 </div>
-                <div class="service-title">پابجی UC</div>
-                <div class="service-desc">فروش UC ارزان، تحویل فوری</div>
-                <div class="income-badge">درآمد از هر فروش: ۲۰,۰۰۰ تومان</div>
-                <div class="price">از ۱۰,۰۰۰ تومان</div>
-                <button class="action-btn buy" onclick="buyService('پابجی')">خرید UC</button>
-                <button class="action-btn view" onclick="viewDetails('پابجی')">مشاهده جزئیات</button>
+                <div class="service-title">PUBG UC</div>
+                <div class="service-desc">UC Cheap, Fast Delivery</div>
+                <div class="income-badge">Income: $1 per sale</div>
+                <div class="price">From $0.5</div>
+                <button class="action-btn buy" onclick="buyService('PUBG UC')">Buy UC</button>
             </div>
 
             <!-- یوتیوب -->
@@ -305,12 +295,11 @@
                 <div class="service-icon">
                     <i class="fab fa-youtube"></i>
                 </div>
-                <div class="service-title">یوتیوب</div>
-                <div class="service-desc">افزایش سابسکرایب، لایک، ویو</div>
-                <div class="income-badge">درآمد از هر فروش: ۴۰,۰۰۰ تومان</div>
-                <div class="price">از ۸۰,۰۰۰ تومان</div>
-                <button class="action-btn buy" onclick="buyService('یوتیوب')">خرید سرویس</button>
-                <button class="action-btn income" onclick="showIncome('یوتیوب')">درآمد من</button>
+                <div class="service-title">YouTube</div>
+                <div class="service-desc">Subscribers, Likes, Views</div>
+                <div class="income-badge">Income: $2.5 per sale</div>
+                <div class="price">From $4</div>
+                <button class="action-btn buy" onclick="buyService('YouTube')">Buy Service</button>
             </div>
 
             <!-- چت جی پی تی -->
@@ -319,35 +308,10 @@
                     <i class="fas fa-robot"></i>
                 </div>
                 <div class="service-title">ChatGPT Plus</div>
-                <div class="service-desc">اکانت پریمیوم دسترسی به GPT-4</div>
-                <div class="income-badge">درآمد از هر فروش: ۱۰۰,۰۰۰ تومان</div>
-                <div class="price">۲۰۰,۰۰۰ تومان</div>
-                <button class="action-btn buy" onclick="buyService('ChatGPT')">خرید اکانت</button>
-                <button class="action-btn view" onclick="viewDetails('ChatGPT')">مشاهده جزئیات</button>
-            </div>
-
-            <!-- گوگل ترنسلیت -->
-            <div class="service-card translate">
-                <div class="service-icon">
-                    <i class="fas fa-language"></i>
-                </div>
-                <div class="service-title">گوگل ترنسلیت</div>
-                <div class="service-desc">سرویس ترجمه حرفه‌ای</div>
-                <div class="income-badge">درآمد از هر فروش: ۱۵,۰۰۰ تومان</div>
-                <div class="price">از ۳۰,۰۰۰ تومان</div>
-                <button class="action-btn buy" onclick="buyService('ترجمه')">خرید سرویس</button>
-            </div>
-
-            <!-- اپ استور -->
-            <div class="service-card appstore">
-                <div class="service-icon">
-                    <i class="fab fa-app-store-ios"></i>
-                </div>
-                <div class="service-title">اپ استور</div>
-                <div class="service-desc">اکانت اپل، خرید از استور</div>
-                <div class="income-badge">درآمد از هر فروش: ۶۰,۰۰۰ تومان</div>
-                <div class="price">از ۱۵۰,۰۰۰ تومان</div>
-                <button class="action-btn buy" onclick="buyService('اپ استور')">خرید اکانت</button>
+                <div class="service-desc">Premium Account GPT-4</div>
+                <div class="income-badge">Income: $6 per sale</div>
+                <div class="price">$12</div>
+                <button class="action-btn buy" onclick="buyService('ChatGPT')">Buy Account</button>
             </div>
 
             <!-- گوگل پلی -->
@@ -355,37 +319,23 @@
                 <div class="service-icon">
                     <i class="fab fa-google-play"></i>
                 </div>
-                <div class="service-title">گوگل پلی</div>
-                <div class="service-desc">اکانت گوگل، خرید از پلی استور</div>
-                <div class="income-badge">درآمد از هر فروش: ۵۰,۰۰۰ تومان</div>
-                <div class="price">از ۱۲۰,۰۰۰ تومان</div>
-                <button class="action-btn buy" onclick="buyService('گوگل پلی')">خرید اکانت</button>
+                <div class="service-title">Google Play</div>
+                <div class="service-desc">Google Account, Gift Cards</div>
+                <div class="income-badge">Income: $3 per sale</div>
+                <div class="price">From $7</div>
+                <button class="action-btn buy" onclick="buyService('Google Play')">Buy Account</button>
             </div>
 
-            <!-- کتاب -->
-            <div class="service-card books">
+            <!-- اپ استور -->
+            <div class="service-card appstore">
                 <div class="service-icon">
-                    <i class="fas fa-book"></i>
+                    <i class="fab fa-app-store-ios"></i>
                 </div>
-                <div class="service-title">کتاب‌های الکترونیکی</div>
-                <div class="service-desc">کتاب‌های آموزشی، رمان، علمی</div>
-                <div class="income-badge">درآمد از هر فروش: ۱۰,۰۰۰ تومان</div>
-                <div class="price">از ۲۰,۰۰۰ تومان</div>
-                <button class="action-btn buy" onclick="buyService('کتاب')">خرید کتاب</button>
-                <button class="action-btn view" onclick="viewDetails('کتاب')">مشاهده کتاب‌ها</button>
-            </div>
-
-            <!-- سیستم درآمد -->
-            <div class="service-card income">
-                <div class="service-icon">
-                    <i class="fas fa-money-bill-wave"></i>
-                </div>
-                <div class="service-title">سیستم درآمدزایی</div>
-                <div class="service-desc">پورسانت از فروش، درآمد از تبلیغات</div>
-                <div class="income-badge">درآمد کل: ۲,۵۰۰,۰۰۰ تومان</div>
-                <div class="price">شروع درآمدزایی</div>
-                <button class="action-btn income" onclick="showIncome('کل')">مشاهده درآمد</button>
-                <button class="action-btn view" onclick="viewDetails('درآمد')">جزئیات درآمد</button>
+                <div class="service-title">App Store</div>
+                <div class="service-desc">Apple ID, Gift Cards</div>
+                <div class="income-badge">Income: $4 per sale</div>
+                <div class="price">From $9</div>
+                <button class="action-btn buy" onclick="buyService('App Store')">Buy Account</button>
             </div>
         </div>
     </div>
@@ -415,26 +365,29 @@
 
         // سیستم خرید
         function buyService(serviceName) {
-            alert(`سفارش ${serviceName} ثبت شد!\n\nمبلغ به حساب شما واریز شد.`);
+            const incomeMap = {
+                'Instagram': 2,
+                'WhatsApp': 3,
+                'Facebook': 1.5,
+                'Telegram': 1,
+                'PUBG UC': 1,
+                'YouTube': 2.5,
+                'ChatGPT': 6,
+                'Google Play': 3,
+                'App Store': 4
+            };
+            
+            const income = incomeMap[serviceName] || 1;
+            
+            alert(`✅ Order Successful!\n\nService: ${serviceName}\nIncome: +$${income}`);
             
             // افزایش درآمد
-            let income = parseInt(localStorage.getItem('userIncome') || '0');
-            income += 20000; // ۲۰,۰۰۰ تومان سود
-            localStorage.setItem('userIncome', income.toString());
+            let totalIncome = parseFloat(localStorage.getItem('userIncome') || '0');
+            totalIncome += income;
+            localStorage.setItem('userIncome', totalIncome.toFixed(2));
             
             // نمایش درآمد جدید
             updateIncomeDisplay();
-        }
-
-        // مشاهده جزئیات
-        function viewDetails(serviceName) {
-            alert(`جزئیات ${serviceName}\n\n• قیمت: از ۵۰,۰۰۰ تومان\n• زمان تحویل: فوری\n• پشتیبانی: ۲۴ ساعته`);
-        }
-
-        // نمایش درآمد
-        function showIncome(serviceName) {
-            const income = localStorage.getItem('userIncome') || '0';
-            alert(`💰 درآمد شما از ${serviceName}:\n\n${parseInt(income).toLocaleString()} تومان`);
         }
 
         // بروزرسانی نمایش درآمد
