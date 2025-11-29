@@ -3,268 +3,449 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EkramGram - صفحه اصلی</title>
+    <title>EKRAM HUB - مرکز درآمد و خدمات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #7E57C2;
+            --secondary: #667eea;
+            --success: #10A37F;
+            --instagram: #E4405F;
+            --whatsapp: #25D366;
+            --facebook: #1877F2;
+            --telegram: #0088CC;
+            --pubg: #FFA500;
+            --youtube: #FF0000;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #8A2BE2;
-            --secondary: #FF6B6B;
-            --accent: #4ECDC4;
-            --dark: #1A1A2E;
-            --light: #F8F9FA;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         body {
-            background: var(--light);
-            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            padding: 20px;
         }
 
-        .navbar {
-            background: white;
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* صفحه لاگین */
+        .login-page {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 400px;
+            margin: 50px auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            text-align: center;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: #666;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 80px auto 2rem;
-            padding: 0 2rem;
-        }
-
-        .welcome-section {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .welcome-section h1 {
             font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-weight: bold;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .feature-card i {
-            font-size: 3rem;
             margin-bottom: 1rem;
-            color: var(--primary);
         }
 
-        .feature-card h3 {
+        .form-group {
             margin-bottom: 1rem;
-            color: var(--dark);
+            text-align: right;
         }
 
-        .btn {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
             color: white;
             border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
+            border-radius: 8px;
             font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            margin: 0.5rem;
+            margin: 1rem 0;
         }
 
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
+        /* صفحه اصلی */
+        .main-page {
+            display: none;
         }
 
-        .btn-logout {
-            background: #ff4757;
-        }
-
-        .profile-section {
+        .header {
             text-align: center;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            color: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
-        .profile-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
+        .service-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card.instagram .service-icon { color: var(--instagram); }
+        .service-card.whatsapp .service-icon { color: var(--whatsapp); }
+        .service-card.facebook .service-icon { color: var(--facebook); }
+        .service-card.telegram .service-icon { color: var(--telegram); }
+        .service-card.pubg .service-icon { color: var(--pubg); }
+        .service-card.youtube .service-icon { color: var(--youtube); }
+        .service-card.chatgpt .service-icon { color: var(--success); }
+        .service-card.translate .service-icon { color: var(--primary); }
+        .service-card.appstore .service-icon { color: #007AFF; }
+        .service-card.playstore .service-icon { color: #34A853; }
+        .service-card.books .service-icon { color: #8B4513; }
+        .service-card.income .service-icon { color: #FFD700; }
+
+        .service-title {
+            font-size: 1.2rem;
             font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .service-desc {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+
+        .income-badge {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #333;
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .action-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .action-btn.buy {
+            background: var(--success);
+        }
+
+        .action-btn.view {
+            background: var(--secondary);
+        }
+
+        .action-btn.income {
+            background: #FFD700;
+            color: #333;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- نوار ناوبری -->
-    <nav class="navbar">
-        <div class="logo">EkramGram</div>
-        <div class="nav-links">
-            <a href="#"><i class="fas fa-home"></i> خانه</a>
-            <a href="#"><i class="fas fa-search"></i> جستجو</a>
-            <a href="#"><i class="fas fa-plus-square"></i> ایجاد</a>
-            <a href="#"><i class="fas fa-heart"></i> اعلان‌ها</a>
-            <div class="user-info">
-                <div class="user-avatar" id="userAvatar"></div>
-                <span id="userName"></span>
-                <button class="btn btn-logout" onclick="logout()">
-                    <i class="fas fa-sign-out-alt"></i> خروج
-                </button>
+    <!-- صفحه لاگین -->
+    <div class="login-page" id="loginPage">
+        <div class="logo">EKRAM HUB</div>
+        <p style="color: #666; margin-bottom: 2rem;">ورود به سیستم درآمدزایی</p>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <input type="email" id="loginEmail" placeholder="ایمیل" required>
             </div>
+            <div class="form-group">
+                <input type="password" id="loginPassword" placeholder="رمز عبور" required>
+            </div>
+            <button type="submit" class="login-btn">ورود به سیستم</button>
+        </form>
+
+        <div style="margin-top: 1rem;">
+            <a href="#" style="color: var(--primary); text-decoration: none;">ثبت نام کنید</a>
         </div>
-    </nav>
+    </div>
 
-    <div class="container">
-        <!-- بخش پروفایل -->
-        <div class="profile-section">
-            <div class="profile-avatar" id="profileAvatar"></div>
-            <h1 id="welcomeMessage"></h1>
-            <p>به پنل کاربری EkramGram خوش آمدید</p>
-        </div>
-
-        <!-- ویژگی‌ها -->
-        <div class="features-grid">
-            <div class="feature-card">
-                <i class="fas fa-store"></i>
-                <h3>فروشگاه</h3>
-                <p>مدیریت محصولات و فروش آنلاین</p>
-                <button class="btn">ورود به فروشگاه</button>
-            </div>
-
-            <div class="feature-card">
-                <i class="fas fa-gamepad"></i>
-                <h3>بازی‌ها</h3>
-                <p>دسترسی به بازی‌های آنلاین</p>
-                <button class="btn">مشاهده بازی‌ها</button>
-            </div>
-
-            <div class="feature-card">
-                <i class="fas fa-graduation-cap"></i>
-                <h3>آموزش</h3>
-                <p>دوره‌های آموزشی تخصصی</p>
-                <button class="btn">شروع یادگیری</button>
+    <!-- صفحه اصلی -->
+    <div class="main-page" id="mainPage">
+        <div class="header">
+            <div class="logo">EKRAM HUB</div>
+            <p>سیستم درآمدزایی و خدمات دیجیتال</p>
+            <div class="stats">
+                <div class="stat-card">💰 درآمد امروز: ۲۵۰,۰۰۰ تومان</div>
+                <div class="stat-card">👥 کاربران فعال: ۱,۲۳۴</div>
+                <div class="stat-card">⭐ امتیاز: ۴.۹/۵</div>
             </div>
         </div>
 
-        <!-- اطلاعات کاربر -->
-        <div class="welcome-section">
-            <h2>پنل مدیریت کاربر</h2>
-            <p>از طریق این پنل می‌توانید به تمام امکانات سایت دسترسی داشته باشید</p>
-            <div style="margin-top: 2rem;">
-                <button class="btn">ویرایش پروفایل</button>
-                <button class="btn">تنظیمات حساب</button>
-                <button class="btn">پشتیبانی</button>
+        <div class="services-grid">
+            <!-- اینستاگرام -->
+            <div class="service-card instagram">
+                <div class="service-icon">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <div class="service-title">اینستاگرام</div>
+                <div class="service-desc">افزایش فالوور، لایک، ویو استوری</div>
+                <div class="income-badge">درآمد از هر فروش: ۳۰,۰۰۰ تومان</div>
+                <div class="price">از ۵۰,۰۰۰ تومان</div>
+                <button class="action-btn buy" onclick="buyService('اینستاگرام')">خرید سرویس</button>
+                <button class="action-btn view" onclick="viewDetails('اینستاگرام')">مشاهده جزئیات</button>
+            </div>
+
+            <!-- واتساپ -->
+            <div class="service-card whatsapp">
+                <div class="service-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="service-title">واتساپ بیزینس</div>
+                <div class="service-desc">ربات پیامرسان، پشتیبانی خودکار</div>
+                <div class="income-badge">درآمد از هر فروش: ۵۰,۰۰۰ تومان</div>
+                <div class="price">از ۱۰۰,۰۰۰ تومان</div>
+                <button class="action-btn buy" onclick="buyService('واتساپ')">خرید سرویس</button>
+                <button class="action-btn income" onclick="showIncome('واتساپ')">درآمد من</button>
+            </div>
+
+            <!-- فیسبوک -->
+            <div class="service-card facebook">
+                <div class="service-icon">
+                    <i class="fab fa-facebook"></i>
+                </div>
+                <div class="service-title">فیسبوک</div>
+                <div class="service-desc">افزایش لایک صفحه، فالوور</div>
+                <div class="income-badge">درآمد از هر فروش: ۲۵,۰۰۰ تومان</div>
+                <div class="price">از ۷۰,۰۰۰ تومان</div>
+                <button class="action-btn buy" onclick="buyService('فیسبوک')">خرید سرویس</button>
+                <button class="action-btn view" onclick="viewDetails('فیسبوک')">مشاهده جزئیات</button>
+            </div>
+
+            <!-- تلگرام -->
+            <div class="service-card telegram">
+                <div class="service-icon">
+                    <i class="fab fa-telegram"></i>
+                </div>
+                <div class="service-title">تلگرام</div>
+                <div class="service-desc">افزایش ممبر کانال، ویو پست</div>
+                <div class="income-badge">درآمد از هر فروش: ۲۰,۰۰۰ تومان</div>
+                <div class="price">از ۴۰,۰۰۰ تومان</div>
+                <button class="action-btn buy" onclick="buyService('تلگرام')">خرید سرویس</button>
+                <button class="action-btn income" onclick="showIncome('تلگرام')">درآمد من</button>
+            </div>
+
+            <!-- پابجی -->
+            <div class="service-card pubg">
+                <div class="service-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="service-title">پابجی UC</div>
+                <div class="service-desc">فروش UC ارزان، تحویل فوری</div>
+                <div class="income-badge">درآمد از هر فروش: ۲۰,۰۰۰ تومان</div>
+                <div class="price">از ۱۰,۰۰۰ تومان</div>
+                <button class="action-btn buy" onclick="buyService('پابجی')">خرید UC</button>
+                <button class="action-btn view" onclick="viewDetails('پابجی')">مشاهده جزئیات</button>
+            </div>
+
+            <!-- یوتیوب -->
+            <div class="service-card youtube">
+                <div class="service-icon">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <div class="service-title">یوتیوب</div>
+                <div class="service-desc">افزایش سابسکرایب، لایک، ویو</div>
+                <div class="income-badge">درآمد از هر فروش: ۴۰,۰۰۰ تومان</div>
+                <div class="price">از ۸۰,۰۰۰ تومان</div>
+                <button class="action-btn buy" onclick="buyService('یوتیوب')">خرید سرویس</button>
+                <button class="action-btn income" onclick="showIncome('یوتیوب')">درآمد من</button>
+            </div>
+
+            <!-- چت جی پی تی -->
+            <div class="service-card chatgpt">
+                <div class="service-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="service-title">ChatGPT Plus</div>
+                <div class="service-desc">اکانت پریمیوم دسترسی به GPT-4</div>
+                <div class="income-badge">درآمد از هر فروش: ۱۰۰,۰۰۰ تومان</div>
+                <div class="price">۲۰۰,۰۰۰ تومان</div>
+                <button class="action-btn buy" onclick="buyService('ChatGPT')">خرید اکانت</button>
+                <button class="action-btn view" onclick="viewDetails('ChatGPT')">مشاهده جزئیات</button>
+            </div>
+
+            <!-- گوگل ترنسلیت -->
+            <div class="service-card translate">
+                <div class="service-icon">
+                    <i class="fas fa-language"></i>
+                </div>
+                <div class="service-title">گوگل ترنسلیت</div>
+                <div class="service-desc">سرویس ترجمه حرفه‌ای</div>
+                <div class="income-badge">درآمد از هر فروش: ۱۵,۰۰۰ تومان</div>
+                <div class="price">از ۳۰,۰۰۰ تومان</div>
+                <button class="action-btn buy" onclick="buyService('ترجمه')">خرید سرویس</button>
+            </div>
+
+            <!-- اپ استور -->
+            <div class="service-card appstore">
+                <div class="service-icon">
+                    <i class="fab fa-app-store-ios"></i>
+                </div>
+                <div class="service-title">اپ استور</div>
+                <div class="service-desc">اکانت اپل، خرید از استور</div>
+                <div class="income-badge">درآمد از هر فروش: ۶۰,۰۰۰ تومان</div>
+                <div class="price">از ۱۵۰,۰۰۰ تومان</div>
+                <button class="action-btn buy" onclick="buyService('اپ استور')">خرید اکانت</button>
+            </div>
+
+            <!-- گوگل پلی -->
+            <div class="service-card playstore">
+                <div class="service-icon">
+                    <i class="fab fa-google-play"></i>
+                </div>
+                <div class="service-title">گوگل پلی</div>
+                <div class="service-desc">اکانت گوگل، خرید از پلی استور</div>
+                <div class="income-badge">درآمد از هر فروش: ۵۰,۰۰۰ تومان</div>
+                <div class="price">از ۱۲۰,۰۰۰ تومان</div>
+                <button class="action-btn buy" onclick="buyService('گوگل پلی')">خرید اکانت</button>
+            </div>
+
+            <!-- کتاب -->
+            <div class="service-card books">
+                <div class="service-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="service-title">کتاب‌های الکترونیکی</div>
+                <div class="service-desc">کتاب‌های آموزشی، رمان، علمی</div>
+                <div class="income-badge">درآمد از هر فروش: ۱۰,۰۰۰ تومان</div>
+                <div class="price">از ۲۰,۰۰۰ تومان</div>
+                <button class="action-btn buy" onclick="buyService('کتاب')">خرید کتاب</button>
+                <button class="action-btn view" onclick="viewDetails('کتاب')">مشاهده کتاب‌ها</button>
+            </div>
+
+            <!-- سیستم درآمد -->
+            <div class="service-card income">
+                <div class="service-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <div class="service-title">سیستم درآمدزایی</div>
+                <div class="service-desc">پورسانت از فروش، درآمد از تبلیغات</div>
+                <div class="income-badge">درآمد کل: ۲,۵۰۰,۰۰۰ تومان</div>
+                <div class="price">شروع درآمدزایی</div>
+                <button class="action-btn income" onclick="showIncome('کل')">مشاهده درآمد</button>
+                <button class="action-btn view" onclick="viewDetails('درآمد')">جزئیات درآمد</button>
             </div>
         </div>
     </div>
 
     <script>
-        // بررسی لاگین بودن کاربر
-        if(localStorage.getItem('isLoggedIn') !== 'true') {
-            window.location.href = 'index.html';
+        // سیستم لاگین
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // ذخیره اطلاعات کاربر
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('isLoggedIn', 'true');
+            
+            // نمایش صفحه اصلی
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('mainPage').style.display = 'block';
+        });
+
+        // اگر کاربر لاگین کرده
+        if(localStorage.getItem('isLoggedIn') === 'true') {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('mainPage').style.display = 'block';
         }
 
-        const user = localStorage.getItem('user') || 'کاربر';
-        
-        // نمایش اطلاعات کاربر
-        document.getElementById('userName').textContent = user;
-        document.getElementById('welcomeMessage').textContent = `سلام ${user}!`;
-        
-        // ایجاد آواتار با حرف اول نام کاربر
-        const firstLetter = user.charAt(0).toUpperCase();
-        document.getElementById('userAvatar').textContent = firstLetter;
-        document.getElementById('profileAvatar').textContent = firstLetter;
+        // سیستم خرید
+        function buyService(serviceName) {
+            alert(`سفارش ${serviceName} ثبت شد!\n\nمبلغ به حساب شما واریز شد.`);
+            
+            // افزایش درآمد
+            let income = parseInt(localStorage.getItem('userIncome') || '0');
+            income += 20000; // ۲۰,۰۰۰ تومان سود
+            localStorage.setItem('userIncome', income.toString());
+            
+            // نمایش درآمد جدید
+            updateIncomeDisplay();
+        }
 
-        function logout() {
-            localStorage.removeItem('user');
-            localStorage.removeItem('isLoggedIn');
-            window.location.href = 'index.html';
+        // مشاهده جزئیات
+        function viewDetails(serviceName) {
+            alert(`جزئیات ${serviceName}\n\n• قیمت: از ۵۰,۰۰۰ تومان\n• زمان تحویل: فوری\n• پشتیبانی: ۲۴ ساعته`);
+        }
+
+        // نمایش درآمد
+        function showIncome(serviceName) {
+            const income = localStorage.getItem('userIncome') || '0';
+            alert(`💰 درآمد شما از ${serviceName}:\n\n${parseInt(income).toLocaleString()} تومان`);
+        }
+
+        // بروزرسانی نمایش درآمد
+        function updateIncomeDisplay() {
+            const income = localStorage.getItem('userIncome') || '0';
+            // می‌تونی اینجا نمایش درآمد رو در صفحه آپدیت کنی
+        }
+
+        // اگر کاربر تازه وارد شده
+        if(!localStorage.getItem('userIncome')) {
+            localStorage.setItem('userIncome', '0');
         }
     </script>
 </body>
