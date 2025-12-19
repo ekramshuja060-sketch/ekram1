@@ -1,0 +1,8 @@
+// سیستم بازی‌ها
+const gamingIntegration = {
+  pubg: {
+    api: 'PUBG Developer API',
+    features: ['پروفایل بازی', 'آمار', 'تیم‌سازی', 'مسابقات']
+  },
+  // سایر بازی‌ها
+};
