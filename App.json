@@ -1,0 +1,692 @@
+import React, { useState } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+  TextInput,
+  FlatList,
+  Modal,
+  Alert,
+} from 'react-native';
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState('home');
+  const [posts, setPosts] = useState([
+    {
+      id: '1',
+      user: { name: 'علی محمدی', avatar: 'https://i.pravatar.cc/150?img=32' },
+      content: 'امروز دانشگاه رفتیم، روز خوبی بود! 🎓',
+      image: 'https://picsum.photos/400/300?random=1',
+      likes: 124,
+      comments: 23,
+      time: '۲ ساعت پیش',
+    },
+    {
+      id: '2',
+      user: { name: 'سارا احمدی', avatar: 'https://i.pravatar.cc/150?img=44' },
+      content: 'کتاب جدید هوش مصنوعی رو شروع کردم، عالیه! 🤖📚',
+      image: null,
+      likes: 89,
+      comments: 15,
+      time: '۵ ساعت پیش',
+    },
+  ]);
+  const [newPost, setNewPost] = useState('');
+  const [showPostModal, setShowPostModal] = useState(false);
+  const [stories] = useState([
+    { id: '1', name: 'شما', avatar: 'https://i.pravatar.cc/150?img=1', hasNew: true },
+    { id: '2', name: 'علی', avatar: 'https://i.pravatar.cc/150?img=32', hasNew: true },
+    { id: '3', name: 'سارا', avatar: 'https://i.pravatar.cc/150?img=44', hasNew: false },
+  ]);
+
+  // صفحات
+  const renderHome = () => (
+    <ScrollView style={styles.page}>
+      {/* هدر */}
+      <View style={styles.header}>
+        <Text style={styles.logo}>📱 SocialApp</Text>
+        <View style={styles.headerIcons}>
+          <TouchableOpacity style={styles.iconButton}>
+            <Text style={styles.iconText}>🔔</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.iconButton}>
+            <Text style={styles.iconText}>🔍</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      {/* ایجاد پست */}
+      <View style={styles.createPost}>
+        <Image 
+          source={{ uri: 'https://i.pravatar.cc/150?img=1' }} 
+          style={styles.userAvatar} 
+        />
+        <TouchableOpacity 
+          style={styles.postInput}
+          onPress={() => setShowPostModal(true)}
+        >
+          <Text style={styles.postInputText}>چه خبر؟ بنویس...</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.mediaButton}>
+          <Text style={styles.mediaIcon}>📷</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* استوری‌ها */}
+      <Text style={styles.sectionTitle}>استوری‌ها</Text>
+      <ScrollView horizontal style={styles.storiesContainer}>
+        {stories.map(story => (
+          <TouchableOpacity key={story.id} style={styles.storyItem}>
+            <View style={[styles.storyCircle, story.hasNew && styles.storyCircleNew]}>
+              <Image source={{ uri: story.avatar }} style={styles.storyAvatar} />
+            </View>
+            <Text style={styles.storyName}>{story.name}</Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+
+      {/* پست‌ها */}
+      <Text style={styles.sectionTitle}>پست‌های اخیر</Text>
+      {posts.map(post => (
+        <View key={post.id} style={styles.postCard}>
+          <View style={styles.postHeader}>
+            <Image source={{ uri: post.user.avatar }} style={styles.postAvatar} />
+            <View style={styles.postUserInfo}>
+              <Text style={styles.postUserName}>{post.user.name}</Text>
+              <Text style={styles.postTime}>{post.time}</Text>
+            </View>
+            <TouchableOpacity>
+              <Text>⋯</Text>
+            </TouchableOpacity>
+          </View>
+          
+          <Text style={styles.postContent}>{post.content}</Text>
+          
+          {post.image && (
+            <Image source={{ uri: post.image }} style={styles.postImage} />
+          )}
+          
+          <View style={styles.postActions}>
+            <TouchableOpacity style={styles.actionButton}>
+              <Text style={styles.actionIcon}>❤️</Text>
+              <Text style={styles.actionText}>{post.likes}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.actionButton}>
+              <Text style={styles.actionIcon}>💬</Text>
+              <Text style={styles.actionText}>{post.comments}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.actionButton}>
+              <Text style={styles.actionIcon}>↪️</Text>
+              <Text style={styles.actionText}>اشتراک</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      ))}
+    </ScrollView>
+  );
+
+  const renderChat = () => (
+    <View style={styles.page}>
+      <View style={styles.header}>
+        <Text style={styles.logo}>💬 پیام‌ها</Text>
+      </View>
+      
+      <View style={styles.chatList}>
+        <TouchableOpacity style={styles.chatItem}>
+          <Image 
+            source={{ uri: 'https://i.pravatar.cc/150?img=32' }}
+            style={styles.chatAvatar}
+          />
+          <View style={styles.chatInfo}>
+            <Text style={styles.chatName}>علی محمدی</Text>
+            <Text style={styles.chatLastMessage}>شنبه کجا بریم؟</Text>
+          </View>
+          <View style={styles.chatRight}>
+            <Text style={styles.chatTime}>10:30</Text>
+            <View style={styles.unreadBadge}>
+              <Text style={styles.unreadCount}>۳</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        
+        <TouchableOpacity style={styles.chatItem}>
+          <Image 
+            source={{ uri: 'https://i.pravatar.cc/150?img=44' }}
+            style={styles.chatAvatar}
+          />
+          <View style={styles.chatInfo}>
+            <Text style={styles.chatName}>سارا احمدی</Text>
+            <Text style={styles.chatLastMessage}>فایل رو برات فرستادم</Text>
+          </View>
+          <Text style={styles.chatTime}>دیروز</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+
+  const renderLibrary = () => (
+    <View style={styles.page}>
+      <View style={styles.header}>
+        <Text style={styles.logo}>📚 کتابخانه</Text>
+      </View>
+      
+      <View style={styles.searchBox}>
+        <Text>🔍</Text>
+        <TextInput 
+          style={styles.searchInput}
+          placeholder="جستجوی کتاب..."
+          placeholderTextColor="#999"
+        />
+      </View>
+      
+      <View style={styles.libraryGrid}>
+        <TouchableOpacity style={styles.bookCard}>
+          <Text style={styles.bookIcon}>📘</Text>
+          <Text style={styles.bookTitle}>برنامه‌نویسی</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity style={styles.bookCard}>
+          <Text style={styles.bookIcon}>📗</Text>
+          <Text style={styles.bookTitle}>هوش مصنوعی</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+
+  const renderProfile = () => (
+    <View style={styles.page}>
+      <View style={styles.header}>
+        <Text style={styles.logo}>👤 پروفایل</Text>
+      </View>
+      
+      <ScrollView>
+        <View style={styles.profileHeader}>
+          <Image 
+            source={{ uri: 'https://i.pravatar.cc/150?img=1' }}
+            style={styles.profileAvatar}
+          />
+          <Text style={styles.profileName}>احمد رضایی</Text>
+          <Text style={styles.profileBio}>دانشجوی مهندسی کامپیوتر</Text>
+          
+          <View style={styles.statsContainer}>
+            <View style={styles.statItem}>
+              <Text style={styles.statNumber}>۱۵۶</Text>
+              <Text style={styles.statLabel}>دنبال‌کننده</Text>
+            </View>
+            <View style={styles.statItem}>
+              <Text style={styles.statNumber}>۸۹</Text>
+              <Text style={styles.statLabel}>دنبال‌شونده</Text>
+            </View>
+            <View style={styles.statItem}>
+              <Text style={styles.statNumber}>۲۴۳</Text>
+              <Text style={styles.statLabel}>پست</Text>
+            </View>
+          </View>
+        </View>
+      </ScrollView>
+    </View>
+  );
+
+  // مودال ایجاد پست
+  const renderPostModal = () => (
+    <Modal
+      visible={showPostModal}
+      transparent={true}
+      animationType="slide"
+    >
+      <View style={styles.modalContainer}>
+        <View style={styles.modalContent}>
+          <View style={styles.modalHeader}>
+            <Text style={styles.modalTitle}>ایجاد پست</Text>
+            <TouchableOpacity onPress={() => setShowPostModal(false)}>
+              <Text style={styles.modalClose}>✕</Text>
+            </TouchableOpacity>
+          </View>
+          
+          <TextInput
+            style={styles.modalInput}
+            placeholder="چه خبر؟"
+            multiline
+            value={newPost}
+            onChangeText={setNewPost}
+          />
+          
+          <TouchableOpacity 
+            style={styles.modalSubmit}
+            onPress={() => {
+              if (newPost.trim()) {
+                const newPostObj = {
+                  id: Date.now().toString(),
+                  user: { name: 'احمد رضایی', avatar: 'https://i.pravatar.cc/150?img=1' },
+                  content: newPost,
+                  image: null,
+                  likes: 0,
+                  comments: 0,
+                  time: 'همین الان',
+                };
+                setPosts([newPostObj, ...posts]);
+                setNewPost('');
+                setShowPostModal(false);
+                Alert.alert('موفقیت', 'پست منتشر شد!');
+              }
+            }}
+          >
+            <Text style={styles.modalSubmitText}>انتشار</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </Modal>
+  );
+
+  return (
+    <View style={styles.container}>
+      {/* صفحه فعال */}
+      {activeTab === 'home' && renderHome()}
+      {activeTab === 'chat' && renderChat()}
+      {activeTab === 'library' && renderLibrary()}
+      {activeTab === 'profile' && renderProfile()}
+      
+      {renderPostModal()}
+      
+      {/* نوار پایین */}
+      <View style={styles.bottomNav}>
+        <TouchableOpacity 
+          style={styles.navButton} 
+          onPress={() => setActiveTab('home')}
+        >
+          <Text style={[styles.navIcon, activeTab === 'home' && styles.activeNavIcon]}>🏠</Text>
+          <Text style={[styles.navText, activeTab === 'home' && styles.activeNavText]}>خانه</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity 
+          style={styles.navButton} 
+          onPress={() => setActiveTab('chat')}
+        >
+          <Text style={[styles.navIcon, activeTab === 'chat' && styles.activeNavIcon]}>💬</Text>
+          <Text style={[styles.navText, activeTab === 'chat' && styles.activeNavText]}>چت</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity 
+          style={styles.navButton} 
+          onPress={() => setActiveTab('library')}
+        >
+          <Text style={[styles.navIcon, activeTab === 'library' && styles.activeNavIcon]}>📚</Text>
+          <Text style={[styles.navText, activeTab === 'library' && styles.activeNavText]}>کتابخانه</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity 
+          style={styles.navButton} 
+          onPress={() => setActiveTab('profile')}
+        >
+          <Text style={[styles.navIcon, activeTab === 'profile' && styles.activeNavIcon]}>👤</Text>
+          <Text style={[styles.navText, activeTab === 'profile' && styles.activeNavText]}>پروفایل</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f8f9fa',
+  },
+  page: {
+    flex: 1,
+    paddingBottom: 70,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 50,
+    paddingBottom: 15,
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+  },
+  logo: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#007AFF',
+  },
+  headerIcons: {
+    flexDirection: 'row',
+  },
+  iconButton: {
+    marginLeft: 15,
+  },
+  iconText: {
+    fontSize: 20,
+  },
+  createPost: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    padding: 15,
+    margin: 15,
+    borderRadius: 15,
+  },
+  userAvatar: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  },
+  postInput: {
+    flex: 1,
+    marginHorizontal: 15,
+    paddingVertical: 12,
+    paddingHorizontal: 15,
+    backgroundColor: '#f8f9fa',
+    borderRadius: 25,
+  },
+  postInputText: {
+    color: '#666',
+  },
+  mediaButton: {
+    padding: 5,
+  },
+  mediaIcon: {
+    fontSize: 24,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginHorizontal: 15,
+    marginTop: 20,
+    marginBottom: 10,
+  },
+  storiesContainer: {
+    paddingHorizontal: 15,
+    marginBottom: 20,
+  },
+  storyItem: {
+    alignItems: 'center',
+    marginRight: 15,
+  },
+  storyCircle: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    borderWidth: 3,
+    borderColor: '#ddd',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
+  storyCircleNew: {
+    borderColor: '#007AFF',
+  },
+  storyAvatar: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+  },
+  storyName: {
+    fontSize: 12,
+  },
+  postCard: {
+    backgroundColor: '#fff',
+    marginHorizontal: 15,
+    marginBottom: 20,
+    borderRadius: 15,
+    padding: 15,
+  },
+  postHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  postAvatar: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  },
+  postUserInfo: {
+    flex: 1,
+    marginHorizontal: 15,
+  },
+  postUserName: {
+    fontWeight: '600',
+    fontSize: 16,
+  },
+  postTime: {
+    color: '#666',
+    fontSize: 12,
+    marginTop: 2,
+  },
+  postContent: {
+    fontSize: 15,
+    marginBottom: 15,
+    textAlign: 'right',
+  },
+  postImage: {
+    width: '100%',
+    height: 200,
+    borderRadius: 10,
+    marginBottom: 15,
+  },
+  postActions: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    borderTopWidth: 1,
+    borderTopColor: '#eee',
+    paddingTop: 15,
+  },
+  actionButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  actionIcon: {
+    marginRight: 5,
+  },
+  actionText: {
+    color: '#666',
+  },
+  chatList: {
+    padding: 15,
+  },
+  chatItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    padding: 15,
+    borderRadius: 15,
+    marginBottom: 10,
+  },
+  chatAvatar: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+  },
+  chatInfo: {
+    flex: 1,
+    marginHorizontal: 15,
+  },
+  chatName: {
+    fontWeight: '600',
+    fontSize: 16,
+  },
+  chatLastMessage: {
+    color: '#666',
+    marginTop: 5,
+  },
+  chatRight: {
+    alignItems: 'flex-end',
+  },
+  chatTime: {
+    color: '#999',
+    fontSize: 12,
+  },
+  unreadBadge: {
+    backgroundColor: '#007AFF',
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 5,
+  },
+  unreadCount: {
+    color: '#fff',
+    fontSize: 12,
+    fontWeight: 'bold',
+  },
+  searchBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    marginHorizontal: 15,
+    marginBottom: 20,
+    paddingHorizontal: 15,
+    borderRadius: 25,
+    height: 50,
+  },
+  searchInput: {
+    flex: 1,
+    marginLeft: 10,
+  },
+  libraryGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    paddingHorizontal: 15,
+  },
+  bookCard: {
+    backgroundColor: '#fff',
+    width: '48%',
+    padding: 20,
+    borderRadius: 15,
+    alignItems: 'center',
+    marginBottom: 15,
+    marginRight: '2%',
+  },
+  bookIcon: {
+    fontSize: 40,
+  },
+  bookTitle: {
+    marginTop: 10,
+    fontWeight: '600',
+  },
+  profileHeader: {
+    alignItems: 'center',
+    paddingTop: 40,
+    paddingBottom: 30,
+    backgroundColor: '#fff',
+  },
+  profileAvatar: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    borderWidth: 3,
+    borderColor: '#007AFF',
+    marginBottom: 15,
+  },
+  profileName: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  profileBio: {
+    color: '#666',
+    marginBottom: 20,
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+    paddingHorizontal: 20,
+  },
+  statItem: {
+    alignItems: 'center',
+  },
+  statNumber: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#007AFF',
+  },
+  statLabel: {
+    color: '#666',
+    marginTop: 5,
+  },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'flex-end',
+  },
+  modalContent: {
+    backgroundColor: '#fff',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    padding: 20,
+    minHeight: 300,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  modalClose: {
+    fontSize: 24,
+    color: '#666',
+  },
+  modalInput: {
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 10,
+    padding: 15,
+    minHeight: 100,
+    textAlignVertical: 'top',
+    marginBottom: 20,
+  },
+  modalSubmit: {
+    backgroundColor: '#007AFF',
+    paddingVertical: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  modalSubmitText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  bottomNav: {
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    borderTopWidth: 1,
+    borderTopColor: '#eee',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    paddingVertical: 10,
+  },
+  navButton: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  navIcon: {
+    fontSize: 24,
+    color: '#666',
+  },
+  activeNavIcon: {
+    color: '#007AFF',
+  },
+  navText: {
+    marginTop: 5,
+    fontSize: 12,
+    color: '#666',
+  },
+  activeNavText: {
+    color: '#007AFF',
+    fontWeight: '600',
+  },
+});
